@@ -5,25 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiber Tesisat | Cihazla Su Kaçağı Tespiti & Tıkanıklık Açma</title>
     <link rel="stylesheet" href="https://cloudflare.com">
-    </script>
     <style>
-        /* Saf ve Bağımsız Kurumsal Tasarım Kodları */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, -apple-system, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
         
+        /* Kurumsal Menü */
         nav { background: #ffffff; padding: 15px 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .logo-grubu { display: flex; align-items: center; gap: 12px; }
         .kurumsal-logo-boyut { max-height: 48px !important; width: auto !important; max-width: 180px !important; object-fit: contain; }
         .logo-yazi { display: flex; flex-direction: column; }
-        .logo-ana { font-size: 24px; font-weight: 800; color: #0f172a; tracking-tight: -0.5px; }
+        .logo-ana { font-size: 24px; font-weight: 800; color: #0f172a; }
         .logo-ana span { color: #06b6d4; font-weight: 300; }
         .logo-slogan { font-size: 10px; font-weight: 700; color: #06b6d4; letter-spacing: 0.5px; }
         .menu { display: flex; gap: 30px; }
-        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; }
-        .menu a.aktif { color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 4px; }
+        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; cursor: pointer; }
         .nav-sag { display: flex; align-items: center; gap: 20px; }
-        .tel-buton { background: #14b8a6; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; shadow: 0 4px 6px rgba(20,184,166,0.2); }
+        .tel-buton { background: #14b8a6; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
 
+        /* Banner */
         header { position: relative; height: 500px; color: white; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
         .slayt-resimleri { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .resim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; }
@@ -34,37 +33,36 @@
         .slogan-banner { color: #2dd4bf; font-weight: 800; font-size: 22px; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
         header p { color: #cbd5e1; max-width: 650px; margin: 20px auto; font-size: 17px; }
         .butonlar { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
-        .btn-ana { background: #14b8a6; color: white; padding: 16px 35px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 18px; }
-        .btn-wp { background: #059669; color: white; padding: 16px 35px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 18px; }
+        .btn-ana, .btn-wp { color: white; padding: 16px 35px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 18px; }
+        .btn-ana { background: #14b8a6; }
+        .btn-wp { background: #059669; }
 
-        .hakkimizda { max-width: 1200px; margin: 80px auto; padding: 0 20px; display: flex; gap: 60px; align-items: center; background: white; padding: 40px; border-radius: 24px; border: 1px solid #e2e8f0; }
-        .hak-metin { flex: 2; }
-        .hak-metin h2 { font-size: 32px; color: #0f172a; margin-bottom: 20px; font-weight: 800; }
-        .hak-metin p { margin-bottom: 18px; color: #475569; }
-        .hak-sayilar { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-        .kutu { background: #f8fafc; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; }
-        .kutu h3 { font-size: 40px; color: #1e3a8a; font-weight: 800; }
-
-        .hizmetler-baslik { text-align: center; margin-top: 100px; }
+        /* Hizmetler */
+        .hizmetler-baslik { text-align: center; margin-top: 80px; }
         .cizgi { width: 70px; height: 4px; background: #14b8a6; margin: 12px auto; border-radius: 2px; }
-        .hizmet-izgara { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .hizmet-kart { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; }
+        .hizmet-izgara { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .hizmet-kart { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .hizmet-resim { width: 100%; height: 180px; object-fit: cover; }
         .hizmet-icerik { padding: 25px 20px; }
-        .hizmet-icerik h4 { font-size: 21px; color: #0f172a; margin-bottom: 12px; font-weight: 700; }
-        .hizmet-icerik p { font-size: 14.5px; color: #64748b; }
+        .hizmet-icerik h4 { font-size: 20px; color: #0f172a; margin-bottom: 10px; font-weight: 700; }
+        .hizmet-icerik p { font-size: 14px; color: #64748b; }
 
-        .youtube-section { background: #f1f5f9; padding: 80px 20px; text-align: center; }
-        .video-konteyner { max-width: 1200px; margin: 40px auto 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .video-kutu { background: white; padding: 15px; border-radius: 20px; border: 1px solid #e2e8f0; }
-        .video-kutu iframe { width: 100%; height: 300px; border-radius: 12px; border: none; }
-        .video-kutu h5 { font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; text-align: left; }
+        /* Gömülü Canlı Yönetim Paneli Alanı */
+        #canli-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.85); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        .panel-kutusu { background: white; width: 100%; max-width: 600px; border-radius: 24px; padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .panel-baslik { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .kapat-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .form-grup { margin-bottom: 15px; }
+        .form-grup label { display: block; font-size: 14px; font-weight: 700; color: #334155; margin-bottom: 5px; }
+        .form-grup input, .form-grup textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; }
+        .kaydet-btn { width: 100%; background: #2563eb; color: white; border: none; padding: 14px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 
         footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 40px; font-size: 14px; margin-top: 60px; }
     </style>
 </head>
 <body>
 
+    <!-- ÜST MENÜ -->
     <nav>
         <div class="logo-grubu">
             <img class="kurumsal-logo-boyut" src="images/logo.png" alt="Logo">
@@ -75,51 +73,33 @@
         </div>
         <div class="nav-sag">
             <div class="menu">
-                <a href="index.html" class="aktif">Ana Sayfa</a>
-                <a href="referanslar.html">Referanslar</a>
-                <a href="iletisim.html">İletişim</a>
+                <a onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Ana Sayfa</a>
+                <a onclick="document.getElementById('yonetim-tetik').click()" style="color: #2563eb; font-weight: 800;"><i class="fas fa-lock mr-1"></i> Panel Girişi</a>
             </div>
-            <a href="tel:+905312316902" class="tel-buton"><i class="fas fa-phone-alt mr-2"></i>7/24 Usta Ara</a>
+            <a href="tel:+905312316902" class="tel-buton" id="ana-tel-link"><i class="fas fa-phone-alt mr-2"></i>7/24 Usta Ara</a>
         </div>
     </nav>
 
+    <!-- BANNER ALANI -->
     <header>
         <div class="slayt-resimleri">
             <img class="resim aktif" src="https://unsplash.com" alt="Tesisat">
-            <img class="resim" src="https://unsplash.com" alt="Cihazlı Tesit">
+            <img class="resim" src="https://unsplash.com" alt="Cihazlı Tespit">
             <img class="resim" src="https://unsplash.com" alt="Petek">
         </div>
         <div class="karartma"></div>
         <div class="slayt-icerik">
-            <h1>Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti</h1>
-            <div class="slogan-banner">DOĞRU SEÇİM, HIZLI ÇÖZÜM</div>
-            <p>Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</p>
+            <h1 id="ana-baslik">Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti</h1>
+            <div class="slogan-banner" id="ana-slogan">DOĞRU SEÇİM, HIZLI ÇÖZÜM</div>
+            <p id="ana-acıklama">Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</p>
             <div class="butonlar">
-                <a href="tel:+905312316902" class="btn-ana">7/24 Servis Ara</a>
-                <a href="https://wa.me" target="_blank" class="btn-wp">WhatsApp Destek</a>
+                <a href="tel:+905312316902" class="btn-ana" id="buton-tel-link">7/24 Servis Ara</a>
+                <a href="https://wa.me" target="_blank" class="btn-wp" id="buton-wp-link">WhatsApp Destek</a>
             </div>
         </div>
     </header>
 
-    <section class="hakkimizda">
-        <div class="hak-metin">
-            <h2 style="color: #14b8a6; font-size: 14px; text-transform: uppercase;">Biz Kimiz?</h2>
-            <h2>Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
-            <p>Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık.</p>
-            <p>Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik.</p>
-        </div>
-        <div class="hak-sayilar">
-            <div class="kutu">
-                <h3>15+ Yıl</h3>
-                <p>Sektörel Tecrübe</p>
-            </div>
-            <div class="kutu">
-                <h3 style="color: #14b8a6;">5.000+</h3>
-                <p>Mutlu Müşteri</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- HİZMETLER -->
     <section class="hizmetler-baslik">
         <h2>Profesyonel Hizmet Alanlarımız</h2>
         <div class="cizgi"></div>
@@ -127,30 +107,48 @@
 
     <main class="hizmet-izgara">
         <div class="hizmet-kart">
-            <img class="hizmet-resim" src="https://unsplash.com">
+            <img class="hizmet-resim" id="hizmet-img-1" src="https://unsplash.com">
             <div class="hizmet-icerik">
-                <h4>Su Kaçağı Tespiti</h4>
-                <p>Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.</p>
+                <h4 id="hizmet-baslik-1">Su Kaçağı Tespiti</h4>
+                <p id="hizmet-detay-1">Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.</p>
             </div>
         </div>
         <div class="hizmet-kart">
-            <img class="hizmet-resim" src="https://unsplash.com">
+            <img class="hizmet-resim" id="hizmet-img-2" src="https://unsplash.com">
             <div class="hizmet-icerik">
-                <h4>Tıkanıklık Açma</h4>
-                <p>Robot makinelerimiz yardımıyla pimaş, mutfak ve tuvalet tıkanıklıklarını zarar vermeden açıyoruz.</p>
+                <h4 id="hizmet-baslik-2">Tıkanıklık Açma</h4>
+                <p id="hizmet-detay-2">Robot makinelerimiz yardımıyla pimaş, mutfak ve tuvalet tıkanıklıklarını zarar vermeden açıyoruz.</p>
             </div>
         </div>
         <div class="hizmet-kart">
-            <img class="hizmet-resim" src="https://unsplash.com">
+            <img class="hizmet-resim" id="hizmet-img-3" src="https://unsplash.com">
             <div class="hizmet-icerik">
-                <h4>Petek Temizliği</h4>
-                <p>Özel teknolojik cihazlar yardımıyla peteklerinizi temizleyerek ısınma performansını artırıyoruz.</p>
+                <h4 id="hizmet-baslik-3">Petek Temizliği</h4>
+                <p id="hizmet-detay-3">Özel teknolojik cihazlar yardımıyla peteklerinizi temizleyerek ısınma performansını artırıyoruz.</p>
             </div>
         </div>
         <div class="hizmet-kart">
-            <img class="hizmet-resim" src="https://unsplash.com">
+            <img class="hizmet-resim" id="hizmet-img-4" src="https://unsplash.com">
             <div class="hizmet-icerik">
-                <h4>Garantili Tamirat</h4>
-                <p>Arızalı bölgelerin onarım ve tesisat yenileme işlemlerini garantili olarak tamamlıyoruz.</p>
+                <h4 id="hizmet-baslik-4">Garantili Tamirat</h4>
+                <p id="hizmet-detay-4">Arızalı bölgelerin onarım ve tesisat yenileme işlemlerini garantili olarak tamamlıyoruz.</p>
             </div>
         </div>
+    </main>
+
+    <!-- CANLI YÖNETİM PANELİ MODAL -->
+    <div id="canli-panel">
+        <div class="panel-kutusu">
+            <div class="panel-baslik">
+                <span>🛠️ Fiber Tesisat Canlı Yönetim Masası</span>
+                <button class="kapat-btn" onclick="document.getElementById('canli-panel').style.display='none'">Kapat</button>
+            </div>
+            <div class="form-grup">
+                <label>Telefon Numarası</label>
+                <input type="text" id="p-tel" value="0531 231 69 02">
+            </div>
+            <div class="form-grup">
+                <label>Ana Banner Başlığı</label>
+                <input type="text" id="p-baslik" value="Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti">
+            </div>
+            <div class="form-grup">
