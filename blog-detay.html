@@ -3,46 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Makale Detay - Fiber Tesisat</title>
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <meta name="keywords" id="seo-keywords" content="fiber tesisat, istanbul tesisatçı">
+    <title>Blog - Fiber Tesisat</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+        nav { background: #ffffff; padding: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .site-logo { height: 56px; width: auto; }
+        .menu-links { display: flex; gap: 20px; font-weight: bold; }
+        .menu-links a { text-decoration: none; color: #475569; }
+        .menu-links a.active { color: #0284c7; border-b: 2px solid #0284c7; }
+        .header-banner { background: #0284c7; color: white; padding: 60px 20px; text-align: center; }
+        .blog-grid { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .blog-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .blog-img { width: 100%; height: 200px; object-fit: cover; }
+        .blog-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .blog-date { font-size: 11px; color: #94a3b8; font-weight: bold; margin-bottom: 5px; display: block; }
+        .blog-body h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; color: #0f172a; }
+        .blog-body p { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 20px; }
+        .blog-body a { font-size: 13px; font-weight: bold; color: #0284c7; text-decoration: none; }
+        footer { background: #0f172a; color: #64748b; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
+<body>
 
-    <nav class="bg-white shadow-md sticky top-0 z-50 px-4 py-3 flex justify-between items-center">
-        <a href="index.html" class="block"><img src="images/logo.png" style="height:45px; width:auto;" alt="Logo"></a>
-        <a href="blog.html" class="text-sm font-bold text-sky-600 hover:underline">&larr; Listeye Dön</a>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
+            <div class="menu-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="iletisim.html">İletişim</a>
+            </div>
+        </div>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-4 py-12 w-full flex-grow">
-        <article class="bg-white p-6 md:p-10 rounded-2xl shadow-sm border border-gray-100">
-            <span class="text-xs text-gray-400 font-bold block mb-2" id="box-date"></span>
-            <h1 class="text-2xl md:text-4xl font-black text-gray-900 mb-6" id="box-title"></h1>
-            <img src="" id="box-img" class="w-full h-80 object-cover rounded-xl mb-8 shadow-sm bg-gray-100" alt="Kapak">
-            <div class="text-gray-700 leading-relaxed text-sm md:text-base space-y-4 whitespace-pre-line text-justify" id="box-content"></div>
-        </article>
-    </main>
+    <div class="header-banner">
+        <h1 style="font-size: 32px; font-weight: 900;">Tesisat Rehberi Blog Makaleleri</h1>
+    </div>
+
+    <main class="blog-grid" id="blog-grid-9"></main>
+
+    <footer>&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
 
     <script>
         const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { blogs9: [] };
-        const urlParams = new URLSearchParams(window.location.search);
-        const boxId = parseInt(urlParams.get('boxId')) || 1;
-
-        const default9Blogs = [];
+        const defaultBlogs = [];
         for(let i=1; i<=9; i++) {
-            default9Blogs.push({ id: i, title: `Makale Başlığı #${i}`, summary:'', content: 'İçerik doldurulmadı.', img: 'https://unsplash.com', date: '24.09.2026', keywords: 'tesisat' });
+            defaultBlogs.push({ id: i, title: `Profesyonel Tesisat Makalesi #${i}`, summary: `Yönetim panelinden bu ${i}. kutunun başlığını, görselini ve detaylı SEO makale metnini anında güncelleyebilirsiniz.`, img: 'https://unsplash.com', date: '24.09.2026' });
         }
-        
-        const activeList = (settings.blogs9 && settings.blogs9.length === 9) ? settings.blogs9 : default9Blogs;
-        const currentArticle = activeList.find(b => b.id === boxId) || default9Blogs[0];
-
-        document.title = currentArticle.title + " - Fiber Tesisat";
-        document.getElementById('box-title').innerText = currentArticle.title;
-        document.getElementById('box-date').innerText = `Yayınlanma Tarihi: ${currentArticle.date}`;
-        document.getElementById('box-img').src = currentArticle.img;
-        document.getElementById('box-content').innerText = currentArticle.content;
-        document.getElementById('seo-keywords').setAttribute('content', currentArticle.keywords || 'tesisat');
+        const activeBlogs = (settings.blogs9 && settings.blogs9.length === 9) ? settings.blogs9 : defaultBlogs;
+        const grid = document.getElementById('blog-grid-9');
+        activeBlogs.forEach(b => {
+            grid.innerHTML += `
+                <div class="blog-card">
+                    <img src="${b.img}" class="blog-img">
+                    <div class="blog-body">
+                        <div><span class="blog-date">${b.date}</span><h3>${b.title}</h3><p>${b.summary}</p></div>
+                        <a href="blog-detay.html?boxId=${b.id}">Yazının Tamamını Oku &rarr;</a>
+                    </div>
+                </div>`;
+        });
     </script>
 </body>
 </html>

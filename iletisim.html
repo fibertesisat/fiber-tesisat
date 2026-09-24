@@ -3,137 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İletişim & Servis Çağır - Fiber Tesisat</title>
-    <script src="https://tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>İletişim - Fiber Tesisat</title>
     <style>
-        .site-logo { height: 56px !important; width: auto !important; object-fit: contain !important; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+        nav { background: #ffffff; padding: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .site-logo { height: 56px; width: auto; }
+        .menu-links { display: flex; gap: 20px; font-weight: bold; }
+        .menu-links a { text-decoration: none; color: #475569; }
+        .menu-links a.active { color: #0284c7; border-b: 2px solid #0284c7; }
+        .banner { background: #0f172a; color: white; padding: 50px 20px; text-align: center; border-bottom: 4px solid #0284c7; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; flex-wrap: wrap; }
+        .left-box { flex: 1; min-width: 300px; background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; height: fit-content; }
+        .right-box { flex: 2; min-width: 300px; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .contact-link { display: flex; align-items: center; gap: 15px; background: #f8fafc; padding: 20px; border-radius: 10px; text-decoration: none; color: inherit; margin-bottom: 15px; font-weight: bold; border: 1px solid #f1f5f9; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 8px; color: #475569; text-transform: uppercase; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; background: #f8fafc; font-size: 14px; outline: none; }
+        .form-control:focus { border-color: #0284c7; }
+        .submit-btn { background: #0284c7; color: white; padding: 12px 35px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        footer { background: #0f172a; color: #64748b; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
+<body>
 
-    <!-- Üst Menü -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
-            <a href="index.html" class="block hover:opacity-90 transition">
-                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo">
-            </a>
-            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
-                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition">Ana Sayfa</a>
-                <a href="hakkimizda.html" class="text-gray-600 hover:text-sky-600 transition">Hakkımızda</a>
-                <a href="blog.html" class="text-gray-600 hover:text-sky-600 transition">Blog</a>
-                <a href="iletisim.html" class="text-sky-600 border-b-2 border-sky-600 pb-1">İletişim</a>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
+            <div class="menu-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="hakkimizda.html">Hakkımızda</a>
+                <a href="blog.html">Blog</a>
+                <a href="iletisim.html" class="active">İletişim</a>
             </div>
-            <div class="flex gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
-    <!-- Üst Alan: İstanbul Bölge Vurgusu Tasarımı -->
-    <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 text-center px-4 border-b-4 border-sky-600">
-        <div class="max-w-4xl mx-auto space-y-4">
-            <div class="w-16 h-16 bg-sky-600/20 text-sky-500 text-3xl flex items-center justify-center rounded-full mx-auto mb-2 animate-bounce">
-                <i class="fa-solid fa-map-location-dot"></i>
-            </div>
-            <h1 class="text-3xl md:text-4xl font-black tracking-tight">İstanbul'un Tüm Bölgelerine 7/24 Kesintisiz Hizmet!</h1>
-            <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-                Gelişmiş mobil araçlarımız ve son teknoloji robotik cihazlarımızla hem <strong>Avrupa Yakası</strong> hem de <strong>Anadolu Yakası</strong> genelindeki tüm ilçelere en hızlı, güvenilir ve garantili teknik servis desteğini sağlıyoruz.
-            </p>
+    <div class="banner">
+        <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 10px;">İstanbul'un Tüm Bölgelerine 7/24 Hizmet!</h1>
+        <p style="color:#94a3b8; max-width:600px; margin:0 auto; font-size:14px;">Avrupa ve Anadolu Yakası mobil ekiplerimizle kırmadan dökmeden arıza tespiti ve çözümü için anında kapınızdayız.</p>
+    </div>
+
+    <div class="container">
+        <div class="left-box">
+            <h3 style="margin-bottom: 20px; font-weight: 900;">Müşteri İletişim Hatları</h3>
+            <a href="tel:+905312316902" class="contact-link" style="border-left: 4px solid #06b6d4;">
+                <div style="color:#06b6d4; font-size:20px;"><i class="fa-solid fa-phone"></i></div>
+                <div><span style="font-size:11px; color:#94a3b8; display:block;">7/24 TIKLA ARA</span>+90 (531) 231 69 02</div>
+            </a>
+            <a href="https://wa.me" target="_blank" class="contact-link" style="border-left: 4px solid #10b981; background: #f0fdf4;">
+                <div style="color:#10b981; font-size:20px;"><i class="fa-brands fa-whatsapp"></i></div>
+                <div><span style="font-size:11px; color:#10b981; display:block;">WHATSAPP DESTEK</span>Mesaj Gönder</div>
+            </a>
+        </div>
+
+        <div class="right-box">
+            <h3 style="margin-bottom: 20px; font-weight: 900;">Hızlı Talep Oluşturma Formu</h3>
+            <form onsubmit="alert('Talebiniz Alındı!'); this.reset(); return false;">
+                <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                    <div class="form-group" style="flex:1; min-width:200px;"><label>Adınız Soyadınız</label><input type="text" required class="form-control"></div>
+                    <div class="form-group" style="flex:1; min-width:200px;"><label>Telefon Numaranız</label><input type="tel" required class="form-control"></div>
+                </div>
+                <div class="form-group"><label>Arıza Açıklaması veya Adresiniz</label><textarea rows="4" required class="form-control" style="resize:none;"></textarea></div>
+                <button type="submit" class="submit-btn">Kayıt Gönder</button>
+            </form>
         </div>
     </div>
 
-    <!-- İletişim Form ve Bilgiler -->
-    <main class="max-w-7xl mx-auto px-4 py-16 w-full flex-grow grid grid-cols-1 lg:grid-cols-3 gap-12">
-        
-        <!-- Sol Bölüm -->
-        <div class="space-y-6">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-                <h3 class="font-black text-lg text-gray-900">Doğrudan İletişim Hatları</h3>
-                <div class="w-12 h-1 bg-sky-600 rounded"></div>
-                
-                <a href="tel:+905312316902" class="block bg-gray-50 border border-gray-100 p-4 rounded-xl hover:bg-gray-100 transition flex items-center gap-4 group">
-                    <div class="p-3 bg-cyan-100 text-cyan-600 rounded-lg text-lg group-hover:scale-110 transition"><i class="fa-solid fa-headset animate-pulse"></i></div>
-                    <div>
-                        <p class="text-xs font-bold text-gray-400 uppercase">Müşteri Destek / Tıkla Ara</p>
-                        <p class="text-gray-900 font-extrabold text-base md:text-lg">+90 (531) 231 69 02</p>
-                    </div>
-                </a>
+    <footer>&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
 
-                <a href="https://wa.mestanbul'dan%20yazıyorum." target="_blank" class="block bg-emerald-50 border border-emerald-100 p-4 rounded-xl hover:bg-emerald-100 transition flex items-center gap-4 group">
-                    <div class="p-3 bg-emerald-500 text-white rounded-lg text-lg group-hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></div>
-                    <div>
-                        <p class="text-xs font-bold text-emerald-700 uppercase">Hızlı WhatsApp Şablonu</p>
-                        <p class="text-emerald-900 font-extrabold text-sm md:text-base">Tek Tıkla Mesaj Gönder</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Hızlı Talep Formu -->
-        <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 lg:col-span-2">
-            <h3 class="text-2xl font-black text-gray-900 mb-2">Hızlı Talep Oluşturma Formu</h3>
-            <p class="text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">Bilgilerinizi bırakın, uzman ekibimiz 15 dakikada sizi arasın.</p>
-            
-            <form onsubmit="alert('Talebiniz başarıyla alındı! Ekiplerimiz en kısa sürede dönüş sağlayacaktır.'); this.reset(); return false;" class="space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Adınız Soyadınız</label>
-                        <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Telefon Numaranız</label>
-                        <input type="tel" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Bulunduğunuz İlçe (İstanbul)</label>
-                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium bg-white">
-                            <option value="">İlçe Seçiniz</option>
-                            <option value="avrupa">Bağcılar (Merkez)</option>
-                            <option value="avrupa">Esenyurt</option>
-                            <option value="avrupa">Küçükçekmece</option>
-                            <option value="anadolu">Kadıköy</option>
-                            <option value="anadolu">Üsküdar</option>
-                            <option value="anadolu">Ümraniye</option>
-                            <option value="diger">Diğer İstanbul İlçeleri</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">İstenen Hizmet / Arıza Türü</label>
-                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium bg-white">
-                            <option value="su-kacagi">Su Kaçağı Tespiti</option>
-                            <option value="gider-yikama">Pis Su Gider Yıkama</option>
-                            <option value="tikaniklik">Tıkanıklık Açma</option>
-                            <option value="petek">Petek Temizliği</option>
-                            <option value="onarim">Garantili Onarım / Diğer</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Adresiniz veya Kısa Arıza Açıklaması</label>
-                    <textarea rows="4" required placeholder="Sorunu kısaca tarif edebilir..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium resize-none"></textarea>
-                </div>
-
-                <button type="submit" class="bg-sky-600 hover:bg-sky-700 text-white font-black px-8 py-3.5 rounded-lg transition shadow-md w-full sm:w-auto cursor-pointer uppercase tracking-wider text-xs border-none">
-                    Arıza Kaydı Gönder
-                </button>
-            </form>
-        </div>
-    </main>
-
-    <footer class="bg-slate-950 text-gray-400 text-center py-8 text-xs border-t border-gray-900">
-        &copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.
-    </footer>
-
-    <script>
-        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { socials:{instagram:'#', youtube:'#', tiktok:'#'} };
-        document.getElementById('header-socials').innerHTML = `
-            <a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500 mx-1"><i class="fa-brands fa-instagram"></i></a>
-            <a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500 mx-1"><i class="fa-brands fa-youtube"></i></a>
-            <a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500 mx-1"><i class="fa-brands fa-tiktok"></i></a>
-        `;
-    </script>
 </body>
 </html>

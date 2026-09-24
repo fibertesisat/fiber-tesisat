@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - Fiber Tesisat</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
+        nav { background: #ffffff; padding: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .site-logo { height: 56px; width: auto; }
+        .menu-links { display: flex; gap: 20px; font-weight: bold; }
+        .menu-links a { text-decoration: none; color: #475569; }
+        .menu-links a.active { color: #0284c7; border-b: 2px solid #0284c7; }
+        .header-banner { background: #0284c7; color: white; padding: 60px 20px; text-align: center; }
+        .main-content { max-width: 800px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .main-content h2 { font-size: 24px; font-weight: 900; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .main-content p { color: #475569; line-height: 1.8; text-align: justify; font-size: 16px; whitespace: pre-line; }
+        footer { background: #0f172a; color: #64748b; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
+            <div class="menu-links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="active">Hakkımızda</a>
+                <a href="blog.html">Blog</a>
+                <a href="iletisim.html">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-banner">
+        <h1 style="font-size: 32px; font-weight: 900;">Kurumsal Profili</h1>
+    </div>
+
+    <main class="main-content">
+        <h2>Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
+        <p id="about-text-p"></p>
+    </main>
+
+    <footer>&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
+
+    <script>
+        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { aboutText: "Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zeminlere zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur." };
+        document.getElementById('about-text-p').innerText = settings.aboutText;
+    </script>
+</body>
+</html>
