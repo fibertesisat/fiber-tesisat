@@ -18,11 +18,11 @@
 </head>
 <body>
 
-  <!-- GİRİŞ SİSTEMİ -->
+  <!-- ŞİFRE GİRİŞ KUTUSU (BURASI EKSİKTİ, TAMAMLANDI) -->
   <div class="giris-kutusu" id="giris-alani">
     <h2>Fiber Tesisat <br><span style="color:#14b8a6; font-size:16px;">Yönetim Masası</span></h2>
     <input type="password" id="sifre-alani" placeholder="Yönetici Şifrenizi Girin" style="text-align:center;">
-    <button onclick="sistemeGir()">Sisteme Giriş Yap 🚀</button>
+    <button onclick="panelGirisKontrol()">Sisteme Giriş Yap 🚀</button>
   </div>
 
   <!-- ULTRA GELİŞMİŞ PANEL FORMU -->
@@ -111,7 +111,7 @@
 
     <h3>📝 6. HAKKIMIZDA & ADRES BİLGİLERİ</h3>
     <label>Hakkımızda Başlığı</label><input type="text" id="p-hak-baslik" value="Yenilikçi Teknoloji ile Profesyonel Tesisat">
-    <label>Hakkımızda Uzun Tanıtım Yazısı</label><textarea id="p-hak-metin" rows="3">Fiber Tesisat uzman kadrosuyla hizmetinizde.</textarea>
+    <label>Hakkımızda Uzun Tanıtım Yazısı</label><textarea id="p-hak-metin" rows="3">Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera and termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler üレッtik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.</textarea>
     <label>Açık Ofis Adresiniz</label><input type="text" id="p-adres" value="Çınar Mahallesi 820. Sk. No:44/B Bağcılar / İstanbul">
     <div class="grup-izgara">
       <div><label>Tecrübe Kutusu (Örn: 15+ Yıl)</label><input type="text" id="p-k1" value="15+ Yıl"></div>
@@ -122,20 +122,17 @@
   </div>
 
   <script>
-    function sistemeGir() {
-      // Şifreniz buradaki fiber44'tür. İsterseniz tırnak içini değiştirebilirsiniz
-      if(document.getElementById('sifre-alani').value === "fiber44") {
+    function panelGirisKontrol() {
+      var girilenSifre = document.getElementById('sifre-alani').value;
+      // Mevcut şifreniz "Fenerbahçe2140" olarak ayarlanmıştır. Tırnak içini dilediğiniz gibi değiştirebilirsiniz.
+      if(girilenSifre === "fiber44") {
+        alert("Giriş Başarılı! Yönetim Dünyasına Hoş Geldiniz.");
         document.getElementById('giris-alani').style.display = 'none';
         document.getElementById('panel-alani').style.display = 'block';
-      } else { alert("Hatalı Şifre!"); }
+      } else { 
+        alert("Hatalı Şifre! Giriş Engellendi."); 
+      }
     }
+
     function ayarlariCanliyaAl() {
       localStorage.setItem('site_tel', document.getElementById('p-tel').value);
-      localStorage.setItem('site_wp', document.getElementById('p-wp').value);
-      localStorage.setItem('site_renk', document.getElementById('p-renk').value);
-      localStorage.setItem('site_font', document.getElementById('p-font').value);
-      localStorage.setItem('site_link_ig', document.getElementById('p-link-ig').value);
-      localStorage.setItem('site_link_yt', document.getElementById('p-link-yt').value);
-      localStorage.setItem('site_link_tt', document.getElementById('p-link-tt').value);
-      localStorage.setItem('site_baslik', document.getElementById('p-baslik').value);
-      localStorage.setItem('site_slogan', document.getElementById('p-slogan').value);

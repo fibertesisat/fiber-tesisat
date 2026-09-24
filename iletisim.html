@@ -4,40 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İletişim | Fiber Tesisat</title>
-    <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; background-color: #f8fafc; color: #1e293b; }
+        nav { background: #ffffff; padding: 15px 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo-ana { font-size: 24px; font-weight: 800; color: #1e3a8a; }
+        .menu { display: flex; gap: 30px; }
+        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; }
+        .menu a.aktif { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 4px; }
+        .iletisim-kutu { max-width: 1000px; margin: 60px auto; background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .il-btn { background: #14b8a6; color: white; text-decoration: none; padding: 15px; border-radius: 12px; font-weight: bold; font-size: 18px; display: block; text-align: center; margin-top: 20px; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
-            <span class="font-extrabold text-2xl text-slate-900">FİBER <span class="text-teal-500 font-light">TESİSAT</span></span>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="index.html" class="text-slate-600 hover:text-blue-600">Ana Sayfa</a>
-                <a href="referanslar.html" class="text-slate-600 hover:text-blue-600">Referanslar</a>
-                <a href="iletisim.html" class="text-blue-600 border-b-2 border-blue-600">İletişim</a>
-            </div>
-            <a href="tel:+905312316902" class="bg-teal-500 text-white px-5 py-2.5 rounded-full font-semibold"><i class="fas fa-phone-alt mr-2"></i>Hemen Ara</a>
+<body>
+    <nav>
+        <span class="logo-ana">FİBER TESİSAT</span>
+        <div class="menu">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="referanslar.html">Referanslar</a>
+            <a href="iletisim.html" class="aktif">İletişim</a>
         </div>
     </nav>
-    <main class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 bg-white rounded-3xl shadow-sm border p-12 mt-10">
+    <main class="iletisim-kutu">
         <div>
-            <h1 class="text-3xl font-extrabold text-slate-900">Bizimle İletişime Geçin</h1>
-            <p class="text-slate-600 mt-4">İstanbul genelinde mobil ekiplerimizle en kısa sürede adresinizdeyiz.</p>
-            <div class="mt-8 space-y-6">
-                <div><h4 class="font-bold text-slate-900">Merkez Ofis Adresi</h4><p class="text-slate-600 text-sm">Çınar Mahallesi 820. Sk. No:44/B Bağcılar / İstanbul</p></div>
-                <div><h4 class="font-bold text-slate-900">WhatsApp ve Mobil Hat</h4><p class="text-green-600 font-bold"><a href="https://wa.me" target="_blank">0531 231 69 02</a></p></div>
-                <div><h4 class="font-bold text-slate-900">Çalışma Saatleri</h4><p class="text-slate-600 text-sm">7 Gün / 24 Saat Açık Servis</p></div>
+            <h1 style="font-size:32px; font-weight:800;">Bizimle İletişime Geçin</h1>
+            <p style="color:#64748b; margin-top:10px;">İstanbul genelinde mobil ekiplerimizle en kısa sürede adresinizdeyiz.</p>
+            <div style="margin-top:30px;">
+                <h4 style="font-weight:bold;">Merkez Ofis Adresi</h4>
+                <p id="il-adres" style="color:#64748b; margin-top:5px;">Çınar Mahallesi 820. Sk. No:44/B Bağcılar / İstanbul</p>
             </div>
         </div>
-        <div class="bg-slate-50 p-6 rounded-2xl">
-            <h3 class="text-xl font-bold mb-4">Hızlı Servis Çağır</h3>
-            <form class="space-y-4">
-                <input type="text" placeholder="Adınız" class="w-full p-3 rounded-lg border bg-white text-sm">
-                <input type="tel" placeholder="Telefonunuz" class="w-full p-3 rounded-lg border bg-white text-sm">
-                <textarea placeholder="Sorununuz..." rows="4" class="w-full p-3 rounded-lg border bg-white text-sm"></textarea>
-                <a href="tel:+905312316902" class="w-full bg-blue-600 text-white font-bold p-3 rounded-lg block text-center">Usta Ara</a>
-            </form>
+        <div style="background:#f8fafc; border-radius:20px; padding:30px; border:1px solid #e2e8f0; display:flex; flex-direction:column; justify-content:center;">
+            <h3 style="font-size:22px; text-align:center; margin-bottom:15px;">Acil Tesisatçı Çağır</h3>
+            <a href="tel:+905312316902" id="il-btn" class="il-btn">Hemen Ustayı Ara 📞</a>
         </div>
     </main>
+    <script>
+        window.onload = function() {
+            if(localStorage.getItem('site_tel')) document.getElementById('il-btn').href = "tel:" + localStorage.getItem('site_tel');
+            if(localStorage.getItem('site_adres')) document.getElementById('il-adres').innerText = localStorage.getItem('site_adres');
+        }
+    </script>
 </body>
 </html>

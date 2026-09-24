@@ -7,25 +7,28 @@
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: system-ui, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
         
-        /* Menü */
+        /* Kurumsal Menü - Lacivert Yazılar */
         nav { background: #ffffff; padding: 15px 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         .logo-grubu { display: flex; align-items: center; gap: 12px; }
         .kurumsal-logo-boyut { max-height: 48px !important; width: auto !important; max-width: 180px !important; object-fit: contain; }
         .logo-yazi { display: flex; flex-direction: column; }
-        .logo-ana { font-size: 24px; font-weight: 800; color: #1e3a8a; } /* İstediğiniz Lacivert Ton */
+        .logo-ana { font-size: 24px; font-weight: 800; color: #1e3a8a; }
         .logo-slogan { font-size: 10px; font-weight: 700; color: #1e3a8a; letter-spacing: 0.5px; margin-top: 2px; }
         
+        /* İstediğiniz Ayrı Sayfa Menü Linkleri */
         .menu { display: flex; gap: 30px; }
-        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; cursor: pointer; transition: color 0.2s; }
+        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; transition: color 0.2s; }
+        .menu a.aktif { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 4px; }
+        .menu a:hover { color: #1e3a8a; }
         
         .sosyal-alan { display: flex; gap: 15px; align-items: center; margin-right: 15px; }
         .sosyal-alan a { text-decoration: none; font-size: 18px; color: #64748b; }
         .nav-sag { display: flex; align-items: center; }
         .tel-buton { background: #14b8a6; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
 
-        /* Dönen Slayt Motoru */
+        /* 5'li Dönen Slayt Motoru ve Şeffaf Karartma Katmanı */
         header { position: relative; height: 530px; color: white; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
         .slayt-resimleri { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .resim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; }
@@ -40,45 +43,37 @@
         .btn-ana { background: #14b8a6; }
         .btn-wp { background: #059669; }
 
-        /* Hakkımızda */
+        /* Paylaştığınız O Gerçek Hakkımızda Paragrafı Alanı */
         .hakkimizda { max-width: 1200px; margin: 60px auto; padding: 40px; display: flex; gap: 60px; align-items: center; background: white; border-radius: 24px; border: 1px solid #e2e8f0; }
         .hak-metin { flex: 2; }
         .hak-metin h2 { font-size: 32px; color: #0f172a; margin-bottom: 20px; font-weight: 800; }
-        .hak-metin p { color: #475569; font-size: 16px; }
+        .hak-metin p { color: #475569; font-size: 16px; margin-bottom: 15px; }
         .hak-sayilar { flex: 1; display: flex; flex-direction: column; gap: 20px; }
         .kutu { background: #f8fafc; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; }
         .kutu h3 { font-size: 36px; color: #1e3a8a; font-weight: 800; }
 
-        /* 5'li Hizmet Alanları */
+        /* Eksiksiz 5'li Yan Yana Hizmet Kartları Düzeni */
         .hizmetler-baslik { text-align: center; margin-top: 80px; }
         .cizgi { width: 70px; height: 4px; background: #14b8a6; margin: 12px auto; border-radius: 2px; }
         .hizmet-izgara { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-        .hizmet-kart { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; text-align: center; }
-        .hizmet-resim { width: 100%; height: 160px; object-fit: cover; }
-        .hizmet-icerik { padding: 20px 15px; }
-        .hizmet-icerik h4 { font-size: 17px; color: #0f172a; margin-bottom: 8px; font-weight: 700; }
-        .hizmet-icerik p { font-size: 13px; color: #64748b; }
+        .hizmet-kart { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; }
+        .hizmet-resim { width: 100%; height: 150px; object-fit: cover; background: #cbd5e1; }
+        .hizmet-icerik { padding: 20px 15px; flex-grow: 1; }
+        .hizmet-icerik h4 { font-size: 16px; color: #0f172a; margin-bottom: 8px; font-weight: 700; }
+        .hizmet-icerik p { font-size: 13px; color: #64748b; line-height: 1.5; }
 
-        /* 4'lü YouTube Alanı */
+        /* 4'lü Bağımsız YouTube Video Alanı */
         .youtube-section { background: #f1f5f9; padding: 80px 20px; text-align: center; }
         .video-konteyner { max-width: 1200px; margin: 40px auto 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .video-kutu { background: white; padding: 15px; border-radius: 20px; border: 1px solid #e2e8f0; }
         .video-kutu iframe { width: 100%; height: 280px; border-radius: 12px; border: none; }
 
-        /* İletişim */
-        .iletisim-bolum { max-width: 1200px; margin: 60px auto; padding: 40px; background: white; border-radius: 24px; border: 1px solid #e2e8f0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .iletisim-sol h2 { font-size: 32px; color: #0f172a; font-weight: 800; margin-bottom: 15px; }
-        .iletisim-detay { margin-top: 25px; }
-        .iletisim-satir { margin-bottom: 20px; }
-        .iletisim-satir h4 { font-size: 16px; color: #0f172a; font-weight: 700; }
-        .iletisim-satir p { color: #64748b; }
-        .il-btn { background: #14b8a6; color: white; text-decoration: none; padding: 15px; border-radius: 12px; font-weight: bold; font-size: 18px; display: block; text-align: center; }
-
-        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 40px; font-size: 14px; }
+        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 40px; font-size: 14px; margin-top: 60px; }
     </style>
 </head>
 <body>
 
+    <!-- ÜST MENÜ (Ayrı Sayfa Bağlantıları Geri Geldi) -->
     <nav>
         <div class="logo-grubu">
             <img class="kurumsal-logo-boyut" src="images/logo.png" alt="Logo">
@@ -88,10 +83,9 @@
             </div>
         </div>
         <div class="menu">
-            <a onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Ana Sayfa</a>
-            <a onclick="document.getElementById('hak-alan').scrollIntoView({behavior: 'smooth'})">Hakkımızda</a>
-            <a onclick="document.getElementById('hizmet-alan').scrollIntoView({behavior: 'smooth'})">Hizmetlerimiz</a>
-            <a onclick="document.getElementById('iletisim-alan').scrollIntoView({behavior: 'smooth'})">İletişim</a>
+            <a href="index.html" class="aktif">Ana Sayfa</a>
+            <a href="referanslar.html">Referanslar</a>
+            <a href="iletisim.html">İletişim</a>
         </div>
         <div class="nav-sag">
             <div class="sosyal-alan">
@@ -103,6 +97,7 @@
         </div>
     </nav>
 
+    <!-- 5'Lİ SLAYT MOTORU -->
     <header>
         <div class="slayt-resimleri" id="slayt-konteyner">
             <img class="resim aktif" id="sl-img-1" src="https://unsplash.com">
@@ -123,26 +118,26 @@
         </div>
     </header>
 
-    <section class="hakkimizda" id="hak-alan">
+    <!-- PAYLAŞTIĞINIZ TAM HAKKIMIZDA METNİ -->
+    <section class="hakkimizda">
         <div class="hak-metin">
             <h2 id="hak-baslik">Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
-            <p id="hak-metin">Fiber Tesisat uzman kadrosuyla hizmetinizde.</p>
+            <p id="hak-metin">Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera and termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.</p>
         </div>
         <div class="hak-sayilar">
             <div class="kutu"><h3 id="hak-k1">15+ Yıl</h3><p>Sektörel Tecrübe</p></div>
-            <div class="kutu"><h3 id="hak-k2">5.000+</h3><p>Mutlu Müşteri</p></div>
+            <div class="kutu"><h3 id="hak-k2" style="color:#14b8a6;">5.000+</h3><p>Mutlu Müşteri</p></div>
         </div>
     </section>
 
-    <section class="hizmetler-baslik" id="hizmet-alan">
+    <!-- EKSİKSİZ 5'Lİ HİZMET KARTLARI (Kutucuklar Tamamen Düzeltildi) -->
+    <section class="hizmetler-baslik">
         <h2>Profesyonel Hizmet Alanlarımız</h2>
         <div class="cizgi"></div>
     </section>
-    
     <main class="hizmet-izgara">
         <div class="hizmet-kart">
             <img class="hizmet-resim" id="hz-img-1" src="https://unsplash.com">
-            <div class="hizmet-icerik"><h4 id="hz-b-1">Su Kaçağı Tespiti</h4><p id="hz-d-1">Kırmadan noktasal tespit.</p></div>
+            <div class="hizmet-icerik"><h4 id="hz-b-1">Su Kaçağı Tespiti</h4><p id="hz-d-1">Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.</p></div>
         </div>
         <div class="hizmet-kart">
-            <img class="hizmet-resim" id="hz-img-2" src="https://unsplash.com">
