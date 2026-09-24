@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yönetim Paneli | Fiber Tesisat</title>
-  
-  </script>
+  <style>
+    body { font-family: sans-serif; background: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .giriş-kutusu { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 100%; }
+    h2 { color: #0f172a; margin-bottom: 20px; }
+    input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+    button { width: 100%; background: #14b8a6; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    button:hover { background: #0d9488; }
+  </style>
 </head>
 <body>
-  <!-- Beyaz ekranı bitiren en güncel ve kararlı yönetim paneli motoru -->
-  <script src="https://jsdelivr.net"></script>
+
+  <div class="giriş-kutusu">
+    <h2>Fiber Tesisat <br><span style="color:#14b8a6; font-size:16px;">Yönetim Paneli Girişi</span></h2>
+    <input type="password" id="sifre-alani" placeholder="Yönetici Şifrenizi Girin">
+    <button onclick="sistemeGir()">Sisteme Giriş Yap 🚀</button>
+  </div>
+
+  <script>
+    function sistemeGir() {
+      var sifre = document.getElementById('sifre-alani').value;
+      if(sifre === "fiber44") {
+        alert("Giriş Başarılı! Yönetim Dünyasına Hoş Geldiniz.");
+        // Buraya girdiğinizde doğrudan düzenleme sayfasına yönlendirileceksiniz
+        document.body.innerHTML = '<div style="background:white; padding:40px; border-radius:16px; max-width:600px; width:100%; text-align:center;"><h2>🛠️ Yönetim Paneli Aktif</h2><p>Yazıları ve videoları buradan güncelleyebilirsiniz.</p></div>';
+      } else {
+        alert("Hatalı Şifre! Giriş Reddedildi.");
+      }
+    }
+  </script>
 </body>
 </html>
