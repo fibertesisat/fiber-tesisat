@@ -3,152 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ön İzleme | Fiber Tesisat</title>
+    <title>Fiber Tesisat | Cihazla Su Kaçağı Tespiti & Tıkanıklık Açma</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    </script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
-        
-        /* Üst Menü Area */
-        nav { background: #ffffff; padding: 15px 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .logo-grubu { display: flex; align-items: center; gap: 12px; }
-        .logo-yazi-alani { display: flex; flex-direction: column; }
-        .logo-ana-yazi { font-size: 26px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; line-height: 1.1; }
-        .logo-ana-yazi span { color: #06b6d4; font-weight: 300; }
-        .logo-slogan { font-size: 11px; font-weight: 700; color: #06b6d4; letter-spacing: 0.5px; margin-top: 2px; }
-        
-        .nav-sag { display: flex; align-items: center; gap: 20px; }
-        .menu { display: flex; gap: 30px; }
-        .menu a { text-decoration: none; color: #475569; font-weight: 600; font-size: 15px; }
-        .menu a.aktif { color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 4px; }
-        
-        /* Sosyal Medya İkonları */
-        .sosyal-ikonlar { display: flex; gap: 12px; }
-        .sosyal-ikonlar a { text-decoration: none; font-size: 20px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50px; color: #475569; background: #f1f5f9; transition: all 0.3s; }
-        .sosyal-ikonlar a.insta:hover { background: #e1306c; color: white; }
-        .sosyal-ikonlar a.yt:hover { background: #ff0000; color: white; }
-
-        .tel-buton { background: #14b8a6; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
-
-        /* Slayt (Slideshow) Alanı */
+        body { background-color: #f8fafc; color: #1e293b; font-family: system-ui, -apple-system, sans-serif; }
         header { position: relative; height: 500px; color: white; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .slayt-resimleri { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .resim { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out; }
         .resim.aktif { opacity: 1; }
         .karartma { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); z-index: 2; }
         .slayt-icerik { position: relative; z-index: 3; text-align: center; padding: 0 20px; max-width: 900px; }
-        header h1 { font-size: 46px; font-weight: 800; line-height: 1.2; }
-        .slogan-banner { color: #2dd4bf; font-weight: 800; font-size: 22px; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase; }
-        header p { color: #cbd5e1; max-width: 650px; margin: 20px auto; font-size: 17px; }
-        .butonlar { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
-        .btn-ana { background: #14b8a6; color: white; padding: 16px 35px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 18px; }
-        .btn-wp { background: #059669; color: white; padding: 16px 35px; border-radius: 12px; font-weight: bold; text-decoration: none; font-size: 18px; }
-
-        /* Hakkımızda Alanı */
-        .hakkimizda { max-width: 1200px; margin: 80px auto; padding: 0 20px; display: flex; gap: 60px; align-items: center; }
-        .hak-metin { flex: 2; }
-        .hak-metin span { color: #14b8a6; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
-        .hak-metin h2 { font-size: 36px; color: #0f172a; margin-top: 5px; margin-bottom: 25px; font-weight: 800; }
-        .hak-metin p { margin-bottom: 18px; color: #475569; font-size: 16px; }
-        .hak-sayilar { flex: 1; display: flex; flex-direction: column; gap: 20px; }
-        .kutu { background: white; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; }
-        .kutu h3 { font-size: 40px; color: #1e3a8a; font-weight: 800; }
-        .kutu p { color: #64748b; font-weight: 600; margin-top: 5px; }
-
-        /* Görselli Hizmet Kartları Bölümü */
-        .hizmetler-baslik { text-align: center; margin-top: 100px; }
-        .hizmetler-baslik h2 { font-size: 34px; color: #0f172a; font-weight: 800; }
-        .cizgi { width: 70px; height: 4px; background: #14b8a6; margin: 12px auto; border-radius: 2px; }
-        .hizmet-izgara { max-width: 1200px; margin: 50px auto 100px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .hizmet-kart { background: white; border-radius: 20px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-        .hizmet-resim { width: 100%; height: 180px; object-fit: cover; }
-        .hizmet-icerik { padding: 25px 20px; }
-        .hizmet-icerik h4 { font-size: 21px; color: #0f172a; margin-bottom: 12px; font-weight: 700; }
-        .hizmet-icerik p { font-size: 14.5px; color: #64748b; }
-
-        /* YouTube Video Bölümü */
-        .youtube-section { background: #f1f5f9; padding: 80px 20px; text-align: center; }
-        .video-konteyner { max-width: 1200px; margin: 40px auto 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .video-kutu { background: white; padding: 15px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-        .video-kutu iframe { width: 100%; height: 300px; border-radius: 12px; border: none; }
-        .video-kutu h5 { font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; text-align: left; padding-left: 5px; }
-
-        footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 50px 20px; font-size: 14px; border-top: 1px solid #1e293b; }
-        .footer-sosyal { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .footer-sosyal a { color: #94a3b8; font-size: 22px; transition: color 0.3s; }
-        .footer-sosyal a:hover { color: #2dd4bf; }
     </style>
-    <!-- Sosyal Medya İkonları İçin FontAwesome Kütüphanesi -->
-    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
 
-    <nav>
-        <div class="logo-grubu">
-            <img src="images/logo.png" alt="Logo" style="height: 48px; width: auto; object-fit: contain;">
-            <div class="logo-yazi-alani">
-                <div class="logo-ana-yazi">FİBER <span>TESİSAT</span></div>
-                <div class="logo-slogan">DOĞRU SEÇİM, HIZLI ÇÖZÜM</div>
+    <!-- ÜST MENÜ -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
+            <div class="flex items-center gap-3">
+                <img class="h-12 w-auto object-contain" src="images/logo.png" alt="Logo">
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-2xl text-slate-900 tracking-tight">FİBER <span class="text-teal-500 font-light">TESİSAT</span></span>
+                    <span class="text-[10px] font-bold text-teal-500 tracking-wider">DOĞRU SEÇİM, HIZLI ÇÖZÜM</span>
+                </div>
             </div>
-        </div>
-        <div class="nav-sag">
-            <div class="menu">
-                <a href="#" class="aktif">Ana Sayfa</a>
-                <a href="#">Referanslar</a>
-                <a href="#">İletişim</a>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 px-1 pb-1">Ana Sayfa</a>
+                <a href="referanslar.html" class="text-slate-600 hover:text-blue-600 transition">Referanslar</a>
+                <a href="iletisim.html" class="text-slate-600 hover:text-blue-600 transition">İletişim</a>
             </div>
-            <!-- Üst Sosyal Medya İkonları -->
-            <div class="sosyal-ikonlar">
-                <a href="https://instagram.com" target="_blank" class="insta"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+            <div class="flex items-center gap-4">
+                <a href="https://instagram.com" target="_blank" class="text-slate-600 hover:text-pink-600 text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" class="text-slate-600 hover:text-red-600 text-xl"><i class="fab fa-youtube"></i></a>
+                <a href="tel:+905312316902" class="bg-teal-500 text-white px-5 py-2.5 rounded-full font-semibold shadow-md"><i class="fas fa-phone-alt mr-2"></i>7/24 Usta Ara</a>
             </div>
-            <a href="#" class="tel-buton">7/24 Usta Ara</a>
         </div>
     </nav>
 
-    <!-- SLAYT ALANI -->
+    <!-- SLAYT BANNER -->
     <header>
         <div class="slayt-resimleri">
-            <img class="resim aktif" src="https://unsplash.com" alt="Tesisat Çalışması">
-            <img class="resim" src="https://unsplash.com" alt="Kaçak Tespiti">
-            <img class="resim" src="https://unsplash.com" alt="Altyapı">
+            <img class="resim aktif" src="https://unsplash.com" alt="Tesisat">
+            <img class="resim" src="https://unsplash.com" alt="Cihazlı Tespit">
+            <img class="resim" src="https://unsplash.com" alt="Petek">
         </div>
         <div class="karartma"></div>
         <div class="slayt-icerik">
-            <h1>Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti</h1>
-            <div class="slogan-banner">DOĞRU SEÇİM, HIZLI ÇÖZÜM</div>
-            <p>Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</p>
-            <div class="butonlar">
-                <a href="#" class="btn-ana">7/24 Servis Ara</a>
-                <a href="#" class="btn-wp">WhatsApp Destek</a>
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti</h1>
+            <p class="text-teal-400 font-bold tracking-widest text-lg md:text-xl uppercase mt-4">DOĞRU SEÇİM, HIZLI ÇÖZÜM</p>
+            <p class="mt-4 text-base md:text-lg text-slate-300 max-w-2xl mx-auto">Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="tel:+905312316902" class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition">7/24 Servis Ara</a>
+                <a href="https://wa.me" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg transition">WhatsApp Destek</a>
             </div>
         </div>
     </header>
 
-    <section class="hakkimizda">
-        <div class="hak-metin">
-            <span>Biz Kimiz?</span>
-            <h2>Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
-            <p>Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık.</p>
-            <p>Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.</p>
-        </div>
-        <div class="hak-sayilar">
-            <div class="kutu">
-                <h3>15+ Yıl</h3>
-                <p>Sektörel Tecrübe</p>
+    <!-- HAKKIMIZDA -->
+    <section class="bg-white py-20 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-3 gap-12 items-center">
+            <div class="lg:col-span-2">
+                <span class="text-teal-500 font-bold uppercase tracking-wider text-sm">Biz Kimiz?</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2 mb-6">Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
+                <p class="text-slate-600 leading-relaxed mb-4">Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık.</p>
+                <p class="text-slate-600 leading-relaxed">Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.</p>
             </div>
-            <div class="kutu">
-                <h3 style="color: #14b8a6;">5.000+</h3>
-                <p>Mutlu Müşteri</p>
+            <div class="grid gap-6">
+                <div class="bg-slate-50 border p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-extrabold text-blue-900">15+ Yıl</div>
+                    <div class="text-slate-500 font-medium mt-1">Sektörel Tecrübe</div>
+                </div>
+                <div class="bg-slate-50 border p-6 rounded-2xl text-center">
+                    <div class="text-4xl font-extrabold text-teal-500">5.000+</div>
+                    <div class="text-slate-500 font-medium mt-1">Mutlu Müşteri</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- GÖRSELLİ HİZMET KARTLARI -->
-    <section class="hizmetler-baslik">
-        <h2>Profesyonel Hizmet Alanlarımız</h2>
-        <div class="cizgi"></div>
+    <!-- HİZMET KARTLARI -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-slate-900">Profesyonel Hizmet Alanlarımız</h2>
+            <div class="h-1 w-20 bg-teal-500 mx-auto mt-4 rounded"></div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-2xl border overflow-hidden shadow-sm">
+                <img class="w-100 h-44 w-full object-cover" src="https://unsplash.com">
+                <div class="p-6">
+                    <h4 class="text-xl font-bold text-slate-900">Su Kaçağı Tespiti</h4>
+                    <p class="text-slate-600 text-sm mt-2">Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border overflow-hidden shadow-sm">
+                <img class="w-100 h-44 w-full object-cover" src="https://unsplash.com">
+                <div class="p-6">
+                    <h4 class="text-xl font-bold text-slate-900">Tıkanıklık Açma</h4>
+                    <p class="text-slate-600 text-sm mt-2">Robot makinelerimiz yardımıyla pimaş, mutfak ve tuvalet tıkanıklıklarını zarar vermeden açıyoruz.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border overflow-hidden shadow-sm">
+                <img class="w-100 h-44 w-full object-cover" src="https://unsplash.com">
+                <div class="p-6">
+                    <h4 class="text-xl font-bold text-slate-900">Petek Temizliği</h4>
+                    <p class="text-slate-600 text-sm mt-2">Özel teknolojik cihazlar yardımıyla peteklerinizi temizleyerek ısınma performansını artırıyoruz.</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl border overflow-hidden shadow-sm">
+                <img class="w-100 h-44 w-full object-cover" src="https://unsplash.com">
+                <div class="p-6">
+                    <h4 class="text-xl font-bold text-slate-900">Garantili Tamirat</h4>
+                    <p class="text-slate-600 text-sm mt-2">Arızalı bölgelerin onarım ve tesisat yenileme işlemlerini garantili olarak tamamlıyoruz.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <main class="hizmet-izgara">
-        <!-- 1. Su Kaçağı -->
-        <div class="hizmet-kart">
+    <!-- YOUTUBE VİDEOLAR -->
+    <section class="bg-slate-100 py-20 text-center">
+        <h2 class="text-3xl font-bold text-slate-900">Uygulamalı Çalışma Videolarımız</h2>
+        <div class="h-1 w-20 bg-teal-500 mx-auto mt-4 mb-12 rounded"></div>
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-4 rounded-2xl border shadow-sm">
+                <iframe class="w-full h-72 rounded-xl border-none" src="https://youtube.com" allowfullscreen></iframe>
+                <h5 class="text-lg font-bold text-left mt-4 text-slate-900">Kameralı Cihazla Noktasal Su Kaçağı Tespiti</h5>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border shadow-sm">
+                <iframe class="w-full h-72 rounded-xl border-none" src="https://youtube.com" allowfullscreen></iframe>
+                <h5 class="text-lg font-bold text-left mt-4 text-slate-900">Robot Makine ile Kırmadan Tıkanıklık Açma</h5>
+            </div>
+        </div>
+    </section>
+

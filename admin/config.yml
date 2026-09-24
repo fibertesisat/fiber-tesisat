@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "Sayfalar"
+    label: "Sayfa İçerikleri"
+    files:
+      - file: "index.html"
+        label: "Ana Sayfa ve Hizmetler"
+        name: "index"
+        fields:
+          - {label: "Site Logosu (Görsel URL)", name: "logo", widget: "image"}
+          - {label: "Firma Telefon Numarası", name: "telefon", widget: "string"}
+          
+          - {label: "Giriş Başlığı (Büyük Yazı)", name: "hero_title", widget: "string"}
+          - {label: "Giriş Açıklaması", name: "hero_desc", widget: "text"}
+          - {label: "Giriş Arka Plan Resmi", name: "hero_bg", widget: "image"}
+
+          - {label: "Su Kaçağı Tespiti Başlığı", name: "kacak_title", widget: "string"}
+          - {label: "Su Kaçağı Tespiti Açıklaması", name: "kacak_desc", widget: "text"}
+          - {label: "Su Kaçağı Tespiti Resmi", name: "kacak_img", widget: "image"}
+
+          - {label: "Tıkanıklık Açma Başlığı", name: "tikaniklik_title", widget: "string"}
+          - {label: "Tıkanıklık Açma Açıklaması", name: "tikaniklik_desc", widget: "text"}
+          - {label: "Tıkanıklık Açma Resmi", name: "tikaniklik_img", widget: "image"}
+
+          - {label: "Petek Temizliği Başlığı", name: "petek_title", widget: "string"}
+          - {label: "Petek Temizliği Açıklaması", name: "petek_desc", widget: "text"}
+          - {label: "Petek Temizliği Resmi", name: "petek_img", widget: "image"}
+
+          - {label: "Tamirat İşleri Başlığı", name: "tamirat_title", widget: "string"}
+          - {label: "Tamirat İşleri Açıklaması", name: "tamirat_desc", widget: "text"}
+          - {label: "Tamirat İşleri Resmi", name: "tamirat_img", widget: "image"}
+
+      - file: "referanslar.html"
+        label: "Referanslar Sayfası"
+        name: "referanslar"
+        fields:
+          - {label: "Sayfa Başlığı", name: "ref_title", widget: "string"}
+          - {label: "Açıklama Metni", name: "ref_desc", widget: "text"}
+          - {label: "Referans Görselleri", name: "ref_gallery", widget: "list", field: {label: "Görsel", name: "img", widget: "image"}}
+
+      - file: "iletisim.html"
+        label: "İletişim Sayfası"
+        name: "iletisim"
+        fields:
+          - {label: "Firma Adresi", name: "adres", widget: "string"}
+          - {label: "WhatsApp Numarası", name: "whatsapp", widget: "string"}
+          - {label: "Çalışma Saatleri", name: "saatler", widget: "string"}
