@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiber Tesisat - Profesyonel Tesisat Çözümleri</title>
-    <script src="https://jsdelivr.net"></script>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- CSS ile Kırılmaz Logo ve Sabit Kurallar -->
     <style>
-        :root { --primary-color: #0284c7; --font-family: 'sans-serif'; }
-        body { font-family: var(--font-family); }
-        .bg-primary { background-color: var(--primary-color); }
-        .text-primary { color: var(--primary-color); }
-        .border-primary { border-color: var(--primary-color); }
+        :root { --primary-color: #0284c7; --font-family: sans-serif; }
+        body { font-family: var(--font-family); margin: 0; padding: 0; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .border-primary { border-color: var(--primary-color) !important; }
         .slider-img { display: none; }
         .slider-img.active { display: block; }
+        /* Logonun dev gibi büyümesini engelleyen hayati CSS kuralı */
+        .site-logo {
+            height: 56px !important;
+            max-height: 56px !important;
+            width: auto !important;
+            object-fit: contain !important;
+            display: block;
+        }
     </style>
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
     <!-- Üst Menü (Header) -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <!-- Kurumsal logo.png Entegrasyonu -->
             <a href="index.html" class="block hover:opacity-90 transition">
-                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="h-14 w-auto object-contain">
+                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo">
             </a>
             <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
                 <a href="index.html" class="text-primary border-b-2 border-primary pb-1">Ana Sayfa</a>
@@ -31,7 +39,6 @@
                 <a href="blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
                 <a href="iletisim.html" class="text-gray-600 hover:text-primary transition">İletişim</a>
             </div>
-            <!-- Sosyal Medya İkonları -->
             <div class="flex items-center gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
@@ -40,7 +47,6 @@
     <div class="relative h-[500px] md:h-[600px] w-full bg-slate-900 overflow-hidden shadow-inner">
         <div id="slider-container" class="w-full h-full"></div>
         
-        <!-- Sabit Yazılar ve Butonlar (Görsel 1) -->
         <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-center px-4 z-10">
             <div class="max-w-3xl text-white space-y-4 md:space-y-6">
                 <h1 id="static-slide-title" class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight drop-shadow-md">
@@ -63,7 +69,6 @@
             </div>
         </div>
 
-        <!-- Slider Okları -->
         <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/70 text-white p-3 rounded-full transition z-20 cursor-pointer hidden md:block">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
@@ -72,7 +77,7 @@
         </button>
     </div>
 
-    <!-- 2. BLOK: Güven ve İstatistik Alanı (Görsel 2) -->
+    <!-- 2. BLOK: Güven ve İstatistik Alanı -->
     <section class="max-w-7xl mx-auto px-4 py-16 w-full">
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12">
             <div class="lg:w-7/12 space-y-4">
@@ -93,12 +98,11 @@
         </div>
     </section>
 
-    <!-- 3. BLOK: Profesyonel Hizmet Alanlarımız (Görsel 3) -->
+    <!-- 3. BLOK: Profesyonel Hizmet Alanlarımız -->
     <section class="bg-white py-16 border-t border-b border-gray-100 w-full">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-3xl font-black text-center text-gray-900 tracking-tight mb-2">Profesyonel Hizmet Alanlarımız</h2>
             <div class="w-24 h-1 bg-primary mx-auto mb-12 rounded"></div>
-            
             <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"></div>
         </div>
     </section>
@@ -107,11 +111,10 @@
     <section class="max-w-7xl mx-auto px-4 py-16 w-full">
         <h2 class="text-3xl font-black text-center text-gray-900 tracking-tight mb-2">Uygulama Videolarımız</h2>
         <div class="w-24 h-1 bg-primary mx-auto mb-12 rounded"></div>
-        
         <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-8"></div>
     </section>
 
-    <!-- Video Modal / Açılır Pencere -->
+    <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
         <div class="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
             <button onclick="closeVideoModal()" class="absolute -top-12 right-0 text-white text-3xl font-bold hover:text-gray-300 cursor-pointer">&times; Kapat</button>
@@ -119,14 +122,13 @@
         </div>
     </div>
 
-    <!-- 5. BLOK: Kurumsal Footer (Görsel 5) -->
+    <!-- 5. BLOK: Kurumsal Footer -->
     <footer class="bg-slate-950 text-gray-300 mt-auto pt-16 pb-8 border-t-4 border-primary">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div class="space-y-4">
-                <!-- Footer logo.png Entegrasyonu -->
-                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="h-12 w-auto object-contain bg-white p-1 rounded">
+                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo bg-white p-1 rounded">
                 <p class="text-sm text-gray-400 leading-relaxed text-justify">
-                    İstanbul genelinde modern teknoloji odaklı cihazlarla kırmadan, dökmeden su kaçağı tespiti, tıkanıklık açma ve pis su gider yıkama işlemlerinde 7/24 kesin çözümler üretiyoruz.
+                    İstanbul genelinde modern teknoloji odaklı cihazlarla kırmadan, dökmeden su kaçağı tespiti, tıkanıklık açma ve pis su gider yıkama işlemlerinde 7/24 kesin çözümler üerez.
                 </p>
                 <div class="flex gap-4 text-xl pt-2" id="footer-socials"></div>
             </div>

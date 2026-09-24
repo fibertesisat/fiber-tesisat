@@ -4,104 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gelişmiş Yönetim Paneli - Fiber Tesisat</title>
+    <!-- Harici kütüphaneler yüklenirken tasarımın bozulmasını engelleyen temel CSS -->
+    <style>
+        body { font-family: sans-serif; background-color: #f1f5f9; margin: 0; padding: 0; }
+        .secure-lock-screen {
+            position: fixed; inset: 0; background-color: #0f172a; z-index: 9999;
+            display: flex; align-items: center; justify-content: center; padding: 16px;
+        }
+        .lock-card {
+            background: white; padding: 32px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+            max-width: 384px; width: 100%; text-align: center; border: 1px solid #e2e8f0; box-sizing: border-box;
+        }
+        .lock-input {
+            width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 8px;
+            margin-bottom: 16px; text-align: center; font-weight: bold; font-size: 16px; box-sizing: border-box;
+            outline: none;
+        }
+        .lock-input:focus { border-color: #0284c7; }
+        .lock-btn {
+            width: 100%; background-color: #0284c7; color: white; font-weight: bold;
+            padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; text-transform: uppercase;
+        }
+        .lock-btn:hover { background-color: #0369a1; }
+        .hidden-panel { display: none !important; }
+        .flex-panel { display: flex !important; }
+    </style>
     <script src="https://jsdelivr.net"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-<body class="bg-slate-100 text-gray-800 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-100 text-gray-800 min-h-screen flex flex-col">
 
-    <!-- Şifre Giriş Ekranı (Şifre: Fenerbahçe2140) -->
-    <div id="login-barrier" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-gray-100">
-            <div class="w-16 h-16 bg-sky-100 text-sky-600 text-3xl flex items-center justify-center rounded-full mx-auto mb-4"><i class="fa-solid fa-user-shield"></i></div>
-            <h2 class="text-xl font-black text-slate-800 mb-1">Yönetici Girişi</h2>
-            <p class="text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">Fiber Tesisat Kumanda Merkezi</p>
+    <!-- 🔒 ŞİFRE BARIYERİ (Şifre doğru girilmeden formlar HTML'e bile enjekte edilmez) -->
+    <div id="login-barrier" class="secure-lock-screen">
+        <div class="lock-card">
+            <div style="width:64px; height:64px; background:#e0f2fe; color:#0284c7; font-size:24px; display:flex; align-items:center; justify-content:center; border-radius:50%; margin:0 auto 16px;">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h2 style="margin:0 0 4px 0; font-size:20px; font-weight:900; color:#1e293b;">Yönetici Girişi</h2>
+            <p style="margin:0 0 24px 0; font-size:12px; color:#94a3b8; font-weight:600; text-transform:uppercase; tracking-wide:1px;">Fiber Tesisat Kumanda Merkezi</p>
             <form onsubmit="checkAdminPassword(event)">
-                <input type="password" id="input-pass" placeholder="Şifrenizi Girin" required class="w-full px-4 py-3 border rounded-xl text-sm mb-4 focus:outline-sky-500 font-bold text-center tracking-widest">
-                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-sm transition cursor-pointer shadow-md">Sistemi Aç</button>
+                <input type="password" id="input-pass" placeholder="Şifrenizi Girin" required class="lock-input">
+                <button type="submit" class="lock-btn">Sistemi Güvenli Aç</button>
             </form>
         </div>
     </div>
 
-    <!-- Panel Ana İçeriği -->
-    <div id="admin-panel-content" class="hidden flex flex-col min-h-screen">
-        <header class="bg-slate-900 text-white p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 class="text-lg font-black flex items-center gap-2 text-sky-400 uppercase tracking-wide"><i class="fa-solid fa-sliders"></i> İnce Ayrıntı İçerik Yönetimi</h1>
-            <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
-                <a href="../index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-lg border border-slate-700 transition">Ana Sayfayı Gör</a>
-                <button onclick="window.location.reload()" class="text-xs bg-red-700 hover:bg-red-600 px-4 py-2.5 rounded-lg transition font-bold cursor-pointer">Çıkış Yap</button>
-            </div>
-        </header>
+    <!-- ⚙️ PANEL ANA İÇERİĞİ (Giriş doğrulanınca JS ile buraya enjekte edilecek) -->
+    <div id="admin-panel-content" class="hidden-panel flex-col min-h-screen"></div>
 
-        <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow space-y-8 pb-24">
-            <form onsubmit="saveAllSettings(event)" class="space-y-8">
+    <script>
+        // index.html ile %100 Uyumlu Varsayılan Bilgiler
+        const defaultSettings = {
+            password: 'Fenerbahçe2140', primaryColor: '#0284c7', fontFamily: 'sans-serif',
+            slideTitle: 'Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti',
+            slideSubtitle: 'DOĞRU SEÇİM, HIZLI ÇÖZÜM',
+            slideDesc: 'Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.',
+            aboutTitle: 'Yenilikçi Teknoloji ile Profesyonel Tesisat',
+            aboutText: "Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zeminlere zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.",
+            stat1Val: '15+ Yıl', stat1Lbl: 'Sektörel Tecrübe', stat2Val: '5.000+', stat2Lbl: 'Mutlu Müşteri',
+            slides: [
+                'https://unsplash.com',
+                'https://unsplash.com',
+                'https://unsplash.com',
+                'https://unsplash.com',
+                'https://unsplash.com'
+            ],
+            services: [
+                { title: 'Su Kaçağı Tespiti', desc: 'Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.', img: 'https://unsplash.com' },
+                { title: 'Tıkanıklık Açma', desc: 'Robotik cihazlarla pimaş, mutfak ve banyo tıkanıklıklarını etrafa zarar vermeden açıyoruz.', img: 'https://unsplash.com' },
+                { title: 'Pis Su Gider Yıkama', desc: 'Yüksek basınçlı makinelerle gider borularının içini yıkayıp ilk günkü temizliğine kavuşturuyoruz.', img: 'https://unsplash.com' },
+                { title: 'Petek Temizleme', desc: 'Özel ilaç ve yıkama makineleri ile peteklerinizi sökmeden temizliyor, ısıyı artırıyoruz.', img: 'https://unsplash.com' },
+                { title: 'Garantili Onarım', desc: 'Tüm tespit ve tamir süreçlerimizde yaptığımız işleri kurumsal güvence altına alıyoruz.', img: 'https://unsplash.com' }
+            ],
+            videos: [
+                'https://youtube.com', 'https://youtube.com',
+                'https://youtube.com', 'https://youtube.com'
+            ],
+            socials: { tiktok: 'https://tiktok.com', instagram: 'https://instagram.com', youtube: 'https://youtube.com' },
+            blogs9: []
+        };
+
+        // 9 adet blog alanı hafızada yoksa oluşturulur
+        if(defaultSettings.blogs9.length === 0) {
+            for(let i=1; i<=9; i++) {
+                defaultSettings.blogs9.push({ id: i, title: `Profesyonel Tesisat Makalesi #${i}`, summary: `Makale özeti #${i}`, content: 'Uzun makale içeriği...', img: 'https://unsplash.com', date: '24.09.2026', keywords: 'tesisat' });
+            }
+        }
+
+        let settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || defaultSettings;
+        if(!settings.blogs9 || settings.blogs9.length !== 9) settings.blogs9 = defaultSettings.blogs9;
+
+        function checkAdminPassword(e) {
+            e.preventDefault();
+            const entered = document.getElementById('input-pass').value;
+            const currentPass = settings.password || 'Fiber2026!';
+            
+            if(entered === currentPass) {
+                document.getElementById('login-barrier').style.setProperty('display', 'none', 'important');
+                const panel = document.getElementById('admin-panel-content');
+                panel.classList.remove('hidden-panel');
+                panel.classList.add('flex-panel');
                 
-                <!-- Şifre Değiştirme -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <h2 class="text-base font-black border-b pb-3 mb-4 text-slate-700 uppercase"><i class="fa-solid fa-lock-open text-yellow-500 mr-1"></i> Giriş Şifresi Güncelleme</h2>
-                    <div class="max-w-xs"><label class="block text-xs font-bold text-gray-500 mb-1">Panel Giriş Şifresi</label><input type="text" id="panel-password" class="w-full border p-2.5 rounded-lg text-sm font-bold focus:outline-sky-500"></div>
-                </div>
+                // Güvenli şablon enjeksiyonu
+                buildSecureAdminPanelHTML();
+            } else {
+                alert('Hatalı Şifre Girdiniz!');
+            }
+        }
 
-                <!-- Genel Ayarlar (Renk, Font, İletişim, Sayaçlar) -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-palette text-sky-500 mr-1"></i> Genel Tema ve Metin Ayarları</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Tema Rengi</label><input type="color" id="primaryColor" class="w-full h-11 border rounded-lg cursor-pointer"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Yazı Tipi Ailesi</label><select id="fontFamily" class="w-full border p-3 rounded-lg bg-white text-sm focus:outline-sky-500"><option value="sans-serif">Sans-Serif (Modern)</option><option value="serif">Serif (Klasik)</option><option value="monospace">Monospace (Yazılımsal)</option></select></div>
+        function buildSecureAdminPanelHTML() {
+            const container = document.getElementById('admin-panel-content');
+            container.innerHTML = `
+                <header class="bg-slate-900 text-white p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <h1 class="text-lg font-black flex items-center gap-2 text-sky-400 uppercase tracking-wide"><i class="fa-solid fa-sliders"></i> İçerik Yönetim Paneli</h1>
+                    <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
+                        <a href="../index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-lg border border-slate-700 transition">Ana Sayfayı Gör</a>
+                        <button onclick="window.location.reload()" class="text-xs bg-red-700 hover:bg-red-600 px-4 py-2.5 rounded-lg transition font-bold cursor-pointer">Çıkış Yap</button>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 1 Değer (Örn: 15+ Yıl)</label><input type="text" id="stat-1-val" class="w-full border p-2.5 rounded-lg text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 1 Etiket (Örn: Sektörel Tecrübe)</label><input type="text" id="stat-1-lbl" class="w-full border p-2.5 rounded-lg text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 2 Değer (Örn: 5.000+)</label><input type="text" id="stat-2-val" class="w-full border p-2.5 rounded-lg text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 2 Etiket (Örn: Mutlu Müşteri)</label><input type="text" id="stat-2-lbl" class="w-full border p-2.5 rounded-lg text-sm"></div>
-                    </div>
-                </div>
-
-                <!-- Slayt Metinleri ve 5 Adet Görsel Linki -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-images text-sky-500 mr-1"></i> Slayt Üstü Metinler ve 5 Görsel Alanı</h2>
-                    <div class="space-y-3">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Büyük Slayt Başlığı</label><input type="text" id="slide-title" class="w-full border p-2.5 rounded-lg text-sm font-semibold"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Slayt Spot Alt Başlık</label><input type="text" id="slide-subtitle" class="w-full border p-2.5 rounded-lg text-sm font-semibold text-cyan-600"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Slayt Açıklama Metni</label><textarea id="slide-desc" rows="2" class="w-full border p-2.5 rounded-lg text-sm resize-none"></textarea></div>
-                    </div>
-                    <div class="grid grid-cols-1 gap-3 pt-3" id="slide-links-zone"></div>
-                </div>
-
-                <!-- Hakkımızda Sayfası Metin Detayları -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-address-card text-sky-500 mr-1"></i> Hakkımızda Sayfası Makalesi</h2>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Hakkımızda Başlığı</label><input type="text" id="about-title" class="w-full border p-2.5 rounded-lg text-sm font-bold"></div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Uzun Kurumsal Tanıtım Metni (Makaleniz)</label><textarea id="about-text" rows="5" class="w-full border p-2.5 rounded-lg text-sm text-justify leading-relaxed"></textarea></div>
-                </div>
-
-                <!-- 5 Hizmet Kartı Alanı -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-cubes text-sky-500 mr-1"></i> Ana Sayfedaki Hizmet Kartları (5 Adet)</h2>
-                    <div class="space-y-4" id="services-zone"></div>
-                </div>
-
-                <!-- 4 Adet YouTube Video Embed Linki -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-brands fa-youtube text-red-600 mr-1"></i> YouTube Video Linkleri (4 Adet Embed)</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="videos-zone"></div>
-                </div>
-
-                <!-- Sosyal Medya İkon Linkleri -->
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
-                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-hashtag text-sky-500 mr-1"></i> Sosyal Medya Bağlantıları (Header & Footer)</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-bold text-pink-600 mb-1">Instagram Linki</label><input type="url" id="social-instagram" class="w-full border p-2 rounded text-sm"></div>
-                        <div><label class="block text-xs font-bold text-red-600 mb-1">YouTube Linki</label><input type="url" id="social-youtube" class="w-full border p-2 rounded text-sm"></div>
-                        <div><label class="block text-xs font-bold text-slate-900 mb-1">TikTok Linki</label><input type="url" id="social-tiktok" class="w-full border p-2 rounded text-sm"></div>
-                    </div>
-                </div>
-
-                <!-- KAYDETME BUTONU -->
-                <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-xl border-t flex justify-end max-w-none z-40">
-                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-12 py-3.5 rounded-xl shadow-md transition text-base cursor-pointer">
-                        <i class="fa-solid fa-floppy-disk mr-2"></i> Tüm Ayarları Sisteme İşle ve Kaydet
-                    </button>
-                </div>
-            </form>
-
-            <!-- BLOG SAYFASINDAKİ 9 ADET HAZIR KUTU İÇİN ÖZEL DÜZENLEME ALANI -->
+                </header>
+                <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow space-y-8 pb-32">
+                    <form onsubmit="saveAllSettings(event)" class="space-y-8">
+                        <!-- Şifre Değiştirme -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                            <h2 class="text-base font-black border-b pb-3 mb-4 text-slate-700 uppercase"><i class="fa-solid fa-key text-yellow-500 mr-1"></i> Panel Şifresi Güncelleme</h2>
+                            <div class="max-w-xs"><label class="block text-xs font-bold text-gray-500 mb-1">Yeni Şifre</label><input type="text" id="panel-password" class="w-full border p-2.5 rounded-lg text-sm font-bold focus:outline-sky-500"></div>
+                        </div>
+                        <!-- Genel Stil ve Tema -->
