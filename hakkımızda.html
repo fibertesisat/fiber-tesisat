@@ -4,50 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hakkımızda - Fiber Tesisat</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-        body { background-color: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
-        nav { background: #ffffff; padding: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .site-logo { height: 56px; width: auto; }
-        .menu-links { display: flex; gap: 20px; font-weight: bold; }
-        .menu-links a { text-decoration: none; color: #475569; }
-        .menu-links a.active { color: #0284c7; border-b: 2px solid #0284c7; }
-        .header-banner { background: #0284c7; color: white; padding: 60px 20px; text-align: center; }
-        .main-content { max-width: 800px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        .main-content h2 { font-size: 24px; font-weight: 900; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-        .main-content p { color: #475569; line-height: 1.8; text-align: justify; font-size: 16px; whitespace: pre-line; }
-        footer { background: #0f172a; color: #64748b; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
-    </style>
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>.site-logo { height: 56px !important; width: auto !important; object-fit: contain !important; }</style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
-            <div class="menu-links">
-                <a href="index.html">Ana Sayfa</a>
-                <a href="hakkimizda.html" class="active">Hakkımızda</a>
-                <a href="blog.html">Blog</a>
-                <a href="iletisim.html">İletişim</a>
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
+            <a href="index.html" class="block"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
+            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-sky-600 border-b-2 border-sky-600 pb-1">Hakkımızda</a>
+                <a href="blog.html" class="text-gray-600 hover:text-sky-600 transition">Blog</a>
+                <a href="iletisim.html" class="text-gray-600 hover:text-sky-600 transition">İletişim</a>
             </div>
+            <div class="flex gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
-    <div class="header-banner">
-        <h1 style="font-size: 32px; font-weight: 900;">Kurumsal Profili</h1>
-    </div>
+    <header class="bg-sky-600 text-white py-16 text-center"><h1 class="text-4xl font-black mb-2">Kurumsal Tanıtım</h1></header>
 
-    <main class="main-content">
-        <h2>Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
-        <p id="about-text-p"></p>
+    <main class="max-w-4xl mx-auto px-4 py-16 w-full flex-grow">
+        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-gray-100 space-y-6">
+            <h2 class="text-2xl font-black text-gray-900 border-b pb-4">Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
+            <p class="text-gray-600 leading-relaxed text-justify text-base whitespace-pre-line" id="page-about-text"></p>
+        </div>
     </main>
 
-    <footer>&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
+    <footer class="bg-slate-950 text-gray-400 text-center py-8 text-xs">&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
 
     <script>
-        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { aboutText: "Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zeminlere zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur." };
-        document.getElementById('about-text-p').innerText = settings.aboutText;
+        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { aboutText: "Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera ve termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zeminlere zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler ürettik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.", socials:{instagram:'#', youtube:'#', tiktok:'#'} };
+        document.getElementById('page-about-text').innerText = settings.aboutText;
+        document.getElementById('header-socials').innerHTML = `<a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500 mx-1"><i class="fa-brands fa-instagram"></i></a><a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500 mx-1"><i class="fa-brands fa-youtube"></i></a><a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500 mx-1"><i class="fa-brands fa-tiktok"></i></a>`;
     </script>
 </body>
 </html>

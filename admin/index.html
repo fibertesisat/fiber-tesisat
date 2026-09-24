@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gelişmiş Yönetim Paneli - Fiber Tesisat</title>
+    <!-- Harici yüklemelerden asla etkilenmeyen saf CSS kilit altyapısı -->
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
         body { background-color: #f1f5f9; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+        
         .secure-lock-screen {
             position: fixed; inset: 0; background-color: #0f172a; z-index: 9999;
             display: flex; align-items: center; justify-content: center; padding: 16px;
@@ -48,6 +50,7 @@
         .save-btn { background: #10b981; color: white; border: none; padding: 12px 40px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; text-transform: uppercase; }
         .save-btn:hover { background: #059669; }
     </style>
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
 
@@ -60,8 +63,7 @@
             <h2 style="margin:0 0 4px 0; font-size:20px; font-weight:900; color:#1e293b;">Yönetici Girişi</h2>
             <p style="margin:0 0 24px 0; font-size:12px; color:#94a3b8; font-weight:600; text-transform:uppercase;">Fiber Tesisat Kumanda Merkezi</p>
             
-            <!-- BURAYI KONTROL EDİN: Şifreniz doğrudan kutunun içine "data-pass" olarak gizlendi. Dosyada Fiber2200 veya Fiber2026! diye aratırsanız göreceksiniz. -->
-            <form onsubmit="checkAdminPassword(event)" id="lock-form" data-pass="Fiber2026!">
+            <form onsubmit="checkAdminPassword(event)" id="lock-form" data-pass="Fenerbahçe2140">
                 <input type="password" id="input-pass" placeholder="Şifrenizi Girin" required class="lock-input">
                 <button type="submit" class="lock-btn">Sistemi Güvenli Aç</button>
             </form>
@@ -69,73 +71,67 @@
     </div>
 
     <!-- ⚙️ YÖNETİM PANELİ ANA ALANI -->
-    <div id="admin-panel-content" style="display: none; flex-direction: column; min-height: 100vh;">
-        <header>
-            <h1>İnce Ayrıntı İçerik Yönetimi</h1>
-            <div style="display:flex; gap:10px;">
-                <a href="../index.html" target="_blank" class="header-btn">Ana Sayfayı Gör</a>
-                <button onclick="window.location.reload()" class="header-btn" style="background:#b91c1c; border-color:#991b1b;">Çıkış Yap</button>
-            </div>
-        </header>
-
-        <main>
-            <form onsubmit="saveAllSettings(event)">
-                
-                <!-- Şifre Ayarı -->
-                <div class="panel-card">
-                    <h2>Giriş Şifresi Güncelleme</h2>
-                    <div class="form-group" style="max-width: 300px;"><label>Yeni Giriş Şifresi</label><input type="text" id="panel-password" class="form-control" style="font-weight:bold;"></div>
+    <div id="admin-panel-content" style="display: none;">
+        <div style="width: 100%; display: flex; flex-direction: column;">
+            <header>
+                <h1>İnce Ayrıntı İçerik Yönetimi</h1>
+                <div style="display:flex; gap:10px;">
+                    <a href="../index.html" target="_blank" class="header-btn">Ana Sayfayı Gör</a>
+                    <button onclick="window.location.reload()" class="header-btn" style="background:#b91c1c; border-color:#991b1b; cursor:pointer;">Çıkış Yap</button>
                 </div>
+            </header>
 
-                <!-- Genel Ayarlar -->
-                <div class="panel-card">
-                    <h2>Genel Tema ve Metin Ayarları</h2>
-                    <div class="form-grid" style="margin-bottom:15px;">
-                        <div class="form-group"><label>Tema Ana Rengi</label><input type="color" id="primaryColor" class="form-control" style="height:40px; padding:2px; cursor:pointer;"></div>
-                        <div class="form-group"><label>Yazı Tipi</label><select id="fontFamily" class="form-control"><option value="sans-serif">Sans-Serif (Modern)</option><option value="serif">Serif (Klasik)</option></select></div>
+            <main>
+                <form onsubmit="saveAllSettings(event)">
+                    
+                    <div class="panel-card">
+                        <h2>Giriş Şifresi Güncelleme</h2>
+                        <div class="form-group" style="max-width: 300px;"><label>Yeni Giriş Şifresi</label><input type="text" id="panel-password" class="form-control" style="font-weight:bold;"></div>
                     </div>
-                    <div class="form-grid">
-                        <div class="form-group"><label>Sayaç 1 Rakam (Örn: 15+ Yıl)</label><input type="text" id="stat-1-val" class="form-control"></div>
-                        <div class="form-group"><label>Sayaç 1 Alt Yazı</label><input type="text" id="stat-1-lbl" class="form-control"></div>
-                        <div class="form-group"><label>Sayaç 2 Rakam (Örn: 5.000+)</label><input type="text" id="stat-2-val" class="form-control"></div>
-                        <div class="form-group"><label>Sayaç 2 Alt Yazı</label><input type="text" id="stat-2-lbl" class="form-control"></div>
+
+                    <div class="panel-card">
+                        <h2>Genel Tema ve Metin Ayarları</h2>
+                        <div class="form-grid" style="margin-bottom:15px;">
+                            <div class="form-group"><label>Tema Ana Rengi</label><input type="color" id="primaryColor" class="form-control" style="height:40px; padding:2px; cursor:pointer;"></div>
+                            <div class="form-group"><label>Yazı Tipi</label><select id="fontFamily" class="form-control"><option value="sans-serif">Sans-Serif (Modern)</option><option value="serif">Serif (Klasik)</option></select></div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Sayaç 1 Rakam</label><input type="text" id="stat-1-val" class="form-control"></div>
+                            <div class="form-group"><label>Sayaç 1 Alt Yazı</label><input type="text" id="stat-1-lbl" class="form-control"></div>
+                            <div class="form-group"><label>Sayaç 2 Rakam</label><input type="text" id="stat-2-val" class="form-control"></div>
+                            <div class="form-group"><label>Sayaç 2 Alt Yazı</label><input type="text" id="stat-2-lbl" class="form-control"></div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Slayt Başlıkları -->
-                <div class="panel-card">
-                    <h2>Slayt Üstü Sabit Yazılar ve 5 Resim URL</h2>
-                    <div class="form-group"><label>Büyük Slayt Başlığı</label><input type="text" id="slide-title" class="form-control" style="font-weight:bold;"></div>
-                    <div class="form-grid">
-                        <div class="form-group"><label>Spot Alt Başlık (Cyan Yazı)</label><input type="text" id="slide-subtitle" class="form-control"></div>
-                        <div class="form-group" style="grid-column: span 2;"><label>Kısa Açıklama Metni</label><input type="text" id="slide-desc" class="form-control"></div>
+                    <div class="panel-card">
+                        <h2>Slayt Üstü Sabit Yazılar ve 5 Resim URL</h2>
+                        <div class="form-group"><label>Büyük Slayt Başlığı</label><input type="text" id="slide-title" class="form-control" style="font-weight:bold;"></div>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Spot Alt Başlık (Cyan Yazı)</label><input type="text" id="slide-subtitle" class="form-control"></div>
+                            <div class="form-group" style="grid-column: span 2;"><label>Kısa Açıklama Metni</label><input type="text" id="slide-desc" class="form-control"></div>
+                        </div>
+                        <div id="slide-links-zone" style="margin-top:15px; display:flex; flex-direction:column; gap:10px;"></div>
                     </div>
-                    <div id="slide-links-zone" style="margin-top:15px; display:flex; flex-direction:column; gap:10px;"></div>
-                </div>
 
-                <!-- Hakkımızda Metni -->
-                <div class="panel-card">
-                    <h2>Hakkımızda Sayfası Makalesi</h2>
-                    <div class="form-group"><label>Makale Başlığı</label><input type="text" id="about-title" class="form-control" style="font-weight:bold;"></div>
-                    <div class="form-group"><label>Kurumsal Metin Gövdesi</label><textarea id="about-text" rows="6" class="form-control" style="resize:none; line-height:1.6;"></textarea></div>
-                </div>
+                    <div class="panel-card">
+                        <h2>Hakkımızda Sayfası Makalesi</h2>
+                        <div class="form-group"><label>Makale Başlığı</label><input type="text" id="about-title" class="form-control" style="font-weight:bold;"></div>
+                        <div class="form-group"><label>Kurumsal Metin Gövdesi</label><textarea id="about-text" rows="6" class="form-control" style="resize:none; line-height:1.6;"></textarea></div>
+                    </div>
 
-                <!-- 5 Hizmet Kartı -->
-                <div class="panel-card">
-                    <h2>Ana Sayfadaki Hizmet Kartları (5 Adet)</h2>
-                    <div id="services-zone"></div>
-                </div>
+                    <div class="panel-card">
+                        <h2>Ana Sayfadaki Hizmet Kartları (5 Adet)</h2>
+                        <div id="services-zone"></div>
+                    </div>
 
-                <!-- 4 Video -->
-                <div class="panel-card">
-                    <h2>YouTube Uygulama Video Embed Linkleri (4 Adet)</h2>
-                    <div class="form-grid" id="videos-zone"></div>
-                </div>
+                    <div class="panel-card">
+                        <h2>YouTube Uygulama Video Embed Linkleri (4 Adet)</h2>
+                        <div class="form-grid" id="videos-zone"></div>
+                    </div>
 
-                <!-- Sosyal Medya -->
-                <div class="panel-card">
-                    <h2>Sosyal Medya Hesap Bağlantıları</h2>
-                    <div class="form-grid">
-                        <div class="form-group"><label>Instagram Linki</label><input type="url" id="social-instagram" class="form-control"></div>
-                        <div class="form-group"><label>YouTube Kanal Linki</label><input type="url" id="social-youtube" class="form-control"></div>
-                        <div class="form-group"><label>TikTok Profil Linki</label><input type="url" id="social-tiktok" class="form-control"></div>
+                    <div class="panel-card">
+                        <h2>Sosyal Medya Hesap Bağlantıları</h2>
+                        <div class="form-grid">
+                            <div class="form-group"><label>Instagram Linki</label><input type="url" id="social-instagram" class="form-control"></div>
+                            <div class="form-group"><label>YouTube Kanal Linki</label><input type="url" id="social-youtube" class="form-control"></div>
+                            <div class="form-group"><label>TikTok Profil Linki</label><input type="url" id="social-tiktok" class="form-control"></div>

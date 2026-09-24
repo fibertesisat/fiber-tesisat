@@ -4,67 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Fiber Tesisat</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-        body { background-color: #f8fafc; color: #1e293b; display: flex; flex-direction: column; min-height: 100vh; }
-        nav { background: #ffffff; padding: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .site-logo { height: 56px; width: auto; }
-        .menu-links { display: flex; gap: 20px; font-weight: bold; }
-        .menu-links a { text-decoration: none; color: #475569; }
-        .menu-links a.active { color: #0284c7; border-b: 2px solid #0284c7; }
-        .header-banner { background: #0284c7; color: white; padding: 60px 20px; text-align: center; }
-        .blog-grid { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .blog-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        .blog-img { width: 100%; height: 200px; object-fit: cover; }
-        .blog-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .blog-date { font-size: 11px; color: #94a3b8; font-weight: bold; margin-bottom: 5px; display: block; }
-        .blog-body h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; color: #0f172a; }
-        .blog-body p { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 20px; }
-        .blog-body a { font-size: 13px; font-weight: bold; color: #0284c7; text-decoration: none; }
-        footer { background: #0f172a; color: #64748b; text-align: center; padding: 20px; font-size: 12px; margin-top: auto; }
-    </style>
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>.site-logo { height: 56px !important; width: auto !important; object-fit: contain !important; }</style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
-            <div class="menu-links">
-                <a href="index.html">Ana Sayfa</a>
-                <a href="hakkimizda.html">Hakkımızda</a>
-                <a href="blog.html" class="active">Blog</a>
-                <a href="iletisim.html">İletişim</a>
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
+            <a href="index.html" class="block"><img src="images/logo.png" alt="Logo" class="site-logo"></a>
+            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-gray-600 hover:text-sky-600 transition">Hakkımızda</a>
+                <a href="blog.html" class="text-sky-600 border-b-2 border-sky-600 pb-1">Blog</a>
+                <a href="iletisim.html" class="text-gray-600 hover:text-sky-600 transition">İletişim</a>
             </div>
+            <div class="flex gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
-    <div class="header-banner">
-        <h1 style="font-size: 32px; font-weight: 900;">Tesisat Rehberi Blog Makaleleri</h1>
-    </div>
+    <header class="bg-sky-600 text-white py-16 text-center"><h1 class="text-4xl font-black mb-2">Faydalı Makaleler & SEO Günlükleri</h1></header>
 
-    <main class="blog-grid" id="blog-grid-9"></main>
+    <main class="max-w-7xl mx-auto px-4 py-16 w-full flex-grow"><div id="blog-9-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></main>
 
-    <footer>&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
+    <footer class="bg-slate-950 text-gray-400 text-center py-8 text-xs">&copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.</footer>
 
     <script>
-        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { blogs9: [] };
+        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { blogs9: [], socials:{instagram:'#', youtube:'#', tiktok:'#'} };
         const defaultBlogs = [];
         for(let i=1; i<=9; i++) {
             defaultBlogs.push({ id: i, title: `Profesyonel Tesisat Makalesi #${i}`, summary: `Yönetim panelinden bu ${i}. kutunun başlığını, görselini ve detaylı SEO makale metnini anında güncelleyebilirsiniz.`, img: 'https://unsplash.com', date: '24.09.2026' });
         }
         const activeBlogs = (settings.blogs9 && settings.blogs9.length === 9) ? settings.blogs9 : defaultBlogs;
-        const grid = document.getElementById('blog-grid-9');
-        activeBlogs.forEach(b => {
+        const grid = document.getElementById('blog-9-grid');
+        activeBlogs.forEach(blog => {
             grid.innerHTML += `
-                <div class="blog-card">
-                    <img src="${b.img}" class="blog-img">
-                    <div class="blog-body">
-                        <div><span class="blog-date">${b.date}</span><h3>${b.title}</h3><p>${b.summary}</p></div>
-                        <a href="blog-detay.html?boxId=${b.id}">Yazının Tamamını Oku &rarr;</a>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col h-full">
+                    <img src="${blog.img}" class="h-48 w-full object-cover bg-gray-100" alt="${blog.title}">
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div><span class="text-xs text-gray-400 font-bold block mb-1">${blog.date}</span><h3 class="font-extrabold text-lg text-gray-900 mb-2 line-clamp-2">${blog.title}</h3><p class="text-gray-600 text-xs leading-relaxed line-clamp-4 mb-4">${blog.summary}</p></div>
+                        <a href="blog-detay.html?boxId=${blog.id}" class="text-xs font-bold text-sky-600 inline-flex items-center gap-1 hover:underline">Yazının Tamamını Oku &rarr;</a>
                     </div>
                 </div>`;
         });
+        document.getElementById('header-socials').innerHTML = `<a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500 mx-1"><i class="fa-brands fa-instagram"></i></a><a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500 mx-1"><i class="fa-brands fa-youtube"></i></a><a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500 mx-1"><i class="fa-brands fa-tiktok"></i></a>`;
     </script>
 </body>
 </html>
