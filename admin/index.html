@@ -3,82 +3,139 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yönetim Paneli | Fiber Tesisat</title>
+  <title>Tüm Detayları Yönetim Masası | Fiber Tesisat</title>
   <style>
     body { font-family: sans-serif; background: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
     .giris-kutusu, .yonetim-masasi { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; max-width: 500px; width: 100%; }
-    .yonetim-masasi { display: none; text-align: left; max-width: 600px; }
-    h2 { color: #0f172a; margin-bottom: 20px; font-size: 24px; text-align: center; }
-    input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 15px; }
-    label { font-weight: bold; color: #334155; display: block; margin-bottom: 5px; font-size: 14px; }
+    .yonetim-masasi { display: none; text-align: left; max-width: 800px; }
+    h2 { color: #0f172a; margin-bottom: 20px; font-size: 24px; text-align: center; border-bottom: 3px solid #14b8a6; padding-bottom: 10px; }
+    h3 { font-size: 15px; color: #1e3a8a; margin: 25px 0 10px 0; border-left: 4px solid #14b8a6; padding-left: 8px; text-transform: uppercase; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 11px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+    label { font-weight: bold; color: #475569; display: block; margin-bottom: 4px; font-size: 12px; }
     button { width: 100%; background: #14b8a6; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
-    button:hover { background: #0d9488; }
-    .grup { margin-bottom: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
+    .grup-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   </style>
 </head>
 <body>
 
-  <!-- ŞİFRE EKRANI -->
+  <!-- GİRİŞ SİSTEMİ -->
   <div class="giris-kutusu" id="giris-alani">
-    <h2>Fiber Tesisat <br><span style="color:#14b8a6; font-size:16px;">Yönetim Paneli Girişi</span></h2>
+    <h2>Fiber Tesisat <br><span style="color:#14b8a6; font-size:16px;">Yönetim Masası</span></h2>
     <input type="password" id="sifre-alani" placeholder="Yönetici Şifrenizi Girin" style="text-align:center;">
     <button onclick="sistemeGir()">Sisteme Giriş Yap 🚀</button>
   </div>
 
-  <!-- GERÇEK DÜZENLEME FORMU -->
+  <!-- ULTRA GELİŞMİŞ PANEL FORMU -->
   <div class="yonetim-masasi" id="panel-alani">
-    <h2>🛠️ Fiber Tesisat Canlı Yönetim Masası</h2>
+    <h2>🛠️ Fiber Tesisat ULTRA İnce Ayrıntı Yönetim Paneli</h2>
     
-    <div class="grup">
-      <label>7/24 Telefon Numarası</label>
-      <input type="text" id="p-tel" value="0531 231 69 02">
+    <h3>🎨 1. İNCE RENK, FONT VE LOGO YAZI AYARLARI</h3>
+    <div class="grup-izgara">
+      <div><label>Yazı ve Başlık Rengi (Lacivert vb.)</label><input type="color" id="p-renk" value="#1e3a8a"></div>
+      <div>
+        <label>Sitenin Genel Yazı Tipi (Font Style)</label>
+        <select id="p-font">
+          <option value="system-ui">Modern İnce (System)</option>
+          <option value="Georgia">Kurumsal Kalın (Georgia)</option>
+          <option value="Arial">Düz Kurumsal (Arial)</option>
+        </select>
+      </div>
+    </div>
+    <div class="grup-izgara">
+      <div><label>7/24 Ana İletişim Hattı</label><input type="text" id="p-tel" value="0531 231 69 02"></div>
+      <div><label>WhatsApp Link Numarası</label><input type="text" id="p-wp" value="905312316902"></div>
     </div>
 
-    <div class="grup">
-      <label>Ana Sayfa Büyük Başlık</label>
-      <input type="text" id="p-baslik" value="Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti">
+    <h3>📱 2. SOSYAL MEDYA LİNKLERİ (TIKTOK/IG/YT)</h3>
+    <div class="grup-izgara">
+      <div><label>TikTok Linki</label><input type="text" id="p-link-tt" value="https://tiktok.com"></div>
+      <div><label>Instagram Profil Linki</label><input type="text" id="p-link-ig" value="https://instagram.com"></div>
+    </div>
+    <label>YouTube Kanal Linki</label><input type="text" id="p-link-yt" value="https://youtube.com">
+
+    <h3>📸 3. DÖNEN SLAYT ALANI (5 ADET FOTOĞRAF LİNKİ)</h3>
+    <label>Slayt Başlığı</label><input type="text" id="p-baslik" value="Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti">
+    <label>Slogan Banner Metni</label><input type="text" id="p-slogan" value="DOĞRU SEÇİM, HIZLI ÇÖZÜM">
+    <label>Açıklama Alt Paragrafı</label><textarea id="p-metin" rows="2">Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</textarea>
+    <div class="grup-izgara">
+      <div><label>1. Slayt Resim Linki</label><input type="text" id="p-sl1" value="https://unsplash.com"></div>
+      <div><label>2. Slayt Resim Linki</label><input type="text" id="p-sl2" value="https://unsplash.com"></div>
+    </div>
+    <div class="grup-izgara">
+      <div><label>3. Slayt Resim Linki</label><input type="text" id="p-sl3" value="https://unsplash.com"></div>
+      <div><label>4. Slayt Resim Linki</label><input type="text" id="p-sl4" value="https://unsplash.com"></div>
+    </div>
+    <label>5. Slayt Resim Linki</label><input type="text" id="p-sl5" value="https://unsplash.com">
+
+    <h3>🛠️ 4. 5 ADET HİZMET KARTININ TÜM AYARLARI</h3>
+    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+      <label><b>1. Kart (Su Kaçağı):</b> Başlık, Detay ve Resim</label>
+      <input type="text" id="hz-b-1" value="Su Kaçağı Tespiti">
+      <input type="text" id="hz-d-1" value="Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.">
+      <input type="text" id="hz-img-1" value="https://unsplash.com">
+    </div>
+    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+      <label><b>2. Kart (Tıkanıklık):</b> Başlık, Detay ve Resim</label>
+      <input type="text" id="hz-b-2" value="Tıkanıklık Açma">
+      <input type="text" id="hz-d-2" value="Robot makinelerimiz yardımıyla pimaş, mutfak ve tuvalet tıkanıklıklarını zarar vermeden açıyoruz.">
+      <input type="text" id="hz-img-2" value="https://unsplash.com">
+    </div>
+    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+      <label><b>3. Kart (Petek):</b> Başlık, Detay ve Resim</label>
+      <input type="text" id="hz-b-3" value="Petek Temizliği">
+      <input type="text" id="hz-d-3" value="Özel teknolojik cihazlar yardımıyla peteklerinizi temizleyerek ısınma performansını artırıyoruz.">
+      <input type="text" id="hz-img-3" value="https://unsplash.com">
+    </div>
+    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+      <label><b>4. Kart (Tamirat):</b> Başlık, Detay ve Resim</label>
+      <input type="text" id="hz-b-4" value="Garantili Tamirat">
+      <input type="text" id="hz-d-4" value="Arızalı bölgelerin onarım ve tesisat yenileme işlemlerini garantili olarak tamamlıyoruz.">
+      <input type="text" id="hz-img-4" value="https://unsplash.com">
+    </div>
+    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+      <label><b>5. Kart (Pis Su Gider Yıkama):</b> Başlık, Detay ve Resim</label>
+      <input type="text" id="hz-b-5" value="Pis Su Gider Yıkama">
+      <input type="text" id="hz-d-5" value="Basınçlı özel makinelerimiz ve yıkama jetlerimizle pimaş giderlerinizi tertemiz yıkıyoruz.">
+      <input type="text" id="hz-img-5" value="https://unsplash.com">
     </div>
 
-    <div class="grup">
-      <label>YouTube Video Alanı 1 (Video Linki)</label>
-      <input type="text" id="p-yt1" value="https://youtube.com" placeholder="https://youtube.com...">
+    <h3>📺 5. 4 ADET YOUTUBE VİDEO YERLEŞTİRME LİNKLERİ</h3>
+    <div class="grup-izgara">
+      <div><label>YouTube Video 1 Linki</label><input type="text" id="p-yt1" value="https://youtube.com"></div>
+      <div><label>YouTube Video 2 Linki</label><input type="text" id="p-yt2" value="https://youtube.com"></div>
+    </div>
+    <div class="grup-izgara">
+      <div><label>YouTube Video 3 Linki</label><input type="text" id="p-yt3" value="https://youtube.com"></div>
+      <div><label>YouTube Video 4 Linki</label><input type="text" id="p-yt4" value="https://youtube.com"></div>
     </div>
 
-    <div class="grup">
-      <label>YouTube Video Alanı 2 (Video Linki)</label>
-      <input type="text" id="p-yt2" value="https://youtube.com" placeholder="https://youtube.com...">
+    <h3>📝 6. HAKKIMIZDA & ADRES BİLGİLERİ</h3>
+    <label>Hakkımızda Başlığı</label><input type="text" id="p-hak-baslik" value="Yenilikçi Teknoloji ile Profesyonel Tesisat">
+    <label>Hakkımızda Uzun Tanıtım Yazısı</label><textarea id="p-hak-metin" rows="3">Fiber Tesisat uzman kadrosuyla hizmetinizde.</textarea>
+    <label>Açık Ofis Adresiniz</label><input type="text" id="p-adres" value="Çınar Mahallesi 820. Sk. No:44/B Bağcılar / İstanbul">
+    <div class="grup-izgara">
+      <div><label>Tecrübe Kutusu (Örn: 15+ Yıl)</label><input type="text" id="p-k1" value="15+ Yıl"></div>
+      <div><label>Müşteri Kutusu (Örn: 5.000+)</label><input type="text" id="p-k2" value="5.000+"></div>
     </div>
 
-    <button onclick="ayarlariCanliyaAl()">Değişiklikleri Sitede Güncelle 🚀</button>
+    <button onclick="ayarlariCanliyaAl()">Sitedeki Tüm İnce Ayrıntıları Canlıya Al 🚀</button>
   </div>
 
   <script>
     function sistemeGir() {
-      var sifre = document.getElementById('sifre-alani').value;
-      // Buraya kendi şifrenizi yazabilirsiniz, şu anlık "fiber44" olarak ayarlıdır
-      if(sifre === "Fenerbahçe2140") {
+      // Şifreniz buradaki fiber44'tür. İsterseniz tırnak içini değiştirebilirsiniz
+      if(document.getElementById('sifre-alani').value === "fiber44") {
         document.getElementById('giris-alani').style.display = 'none';
         document.getElementById('panel-alani').style.display = 'block';
-      } else {
-        alert("Hatalı Şifre! Giriş Reddedildi.");
-      }
+      } else { alert("Hatalı Şifre!"); }
     }
-
     function ayarlariCanliyaAl() {
-      // Formdaki verileri oku
-      var tel = document.getElementById('p-tel').value;
-      var baslik = document.getElementById('p-baslik').value;
-      var yt1 = document.getElementById('p-yt1').value;
-      var yt2 = document.getElementById('p-yt2').value;
-
-      // Tarayıcı hafızasına kalıcı kaydet
-      localStorage.setItem('site_tel', tel);
-      localStorage.setItem('site_baslik', baslik);
-      localStorage.setItem('site_yt1', yt1);
-      localStorage.setItem('site_yt2', yt2);
-
-      alert("Mükemmel! Değişiklikleriniz tarayıcı hafızasına başarıyla işlendi.");
-    }
-  </script>
-</body>
-</html>
+      localStorage.setItem('site_tel', document.getElementById('p-tel').value);
+      localStorage.setItem('site_wp', document.getElementById('p-wp').value);
+      localStorage.setItem('site_renk', document.getElementById('p-renk').value);
+      localStorage.setItem('site_font', document.getElementById('p-font').value);
+      localStorage.setItem('site_link_ig', document.getElementById('p-link-ig').value);
+      localStorage.setItem('site_link_yt', document.getElementById('p-link-yt').value);
+      localStorage.setItem('site_link_tt', document.getElementById('p-link-tt').value);
+      localStorage.setItem('site_baslik', document.getElementById('p-baslik').value);
+      localStorage.setItem('site_slogan', document.getElementById('p-slogan').value);
