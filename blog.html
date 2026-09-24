@@ -4,50 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesisat Rehberi Blog - Fiber Tesisat</title>
-    <script src="https://jsdelivr.net"></script>
+    <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root { --primary-color: #0284c7; --font-family: 'sans-serif'; }
-        body { font-family: var(--font-family); }
-        .bg-primary { background-color: var(--primary-color); }
-        .text-primary { color: var(--primary-color); }
+        .site-logo { height: 56px !important; width: auto !important; object-fit: contain !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
 
     <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <a href="index.html" class="text-2xl font-black text-primary tracking-tight">FIBER TESİSAT</a>
-            <div class="flex space-x-6 font-semibold text-sm">
-                <a href="index.html" class="text-gray-600 hover:text-primary transition">Ana Sayfa</a>
-                <a href="hakkimizda.html" class="text-gray-600 hover:text-primary transition">Hakkımızda</a>
-                <a href="blog.html" class="text-primary border-b-2 border-primary pb-1">Blog</a>
-                <a href="iletisim.html" class="text-gray-600 hover:text-primary transition">İletişim</a>
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
+            <a href="index.html" class="block hover:opacity-90 transition">
+                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo">
+            </a>
+            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-gray-600 hover:text-sky-600 transition">Hakkımızda</a>
+                <a href="blog.html" class="text-sky-600 border-b-2 border-sky-600 pb-1">Blog</a>
+                <a href="iletisim.html" class="text-gray-600 hover:text-sky-600 transition">İletişim</a>
             </div>
             <div class="flex gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
-    <header class="bg-primary text-white py-16 text-center">
+    <header class="bg-sky-600 text-white py-16 text-center">
         <h1 class="text-4xl font-black mb-2 tracking-tight">Faydalı Makaleler & SEO Günlükleri</h1>
         <p class="text-white/80 max-w-md mx-auto text-sm">Toplamda 9 ana başlık altında toplanmış profesyonel makale rehberi.</p>
     </header>
 
-    <!-- Tam İstediğiniz Yan Yana 3'lü, Alt Alta 9'lu Kutu Düzeni -->
     <main class="max-w-7xl mx-auto px-4 py-16 w-full flex-grow">
-        <div id="blog-9-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- 9 Kutu JS ile kusursuz basılacak -->
-        </div>
+        <div id="blog-9-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
-    <footer class="bg-slate-950 text-gray-400 text-center py-8 text-xs border-t border-gray-900">
+    <footer class="bg-slate-950 text-gray-400 text-center py-8 text-xs border-t border-gray-950">
         &copy; 2026 Fiber Tesisat. Tüm Hakları Saklıdır.
     </footer>
 
     <script>
-        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { blogs9: [] };
+        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { blogs9: [], socials:{instagram:'#', youtube:'#', tiktok:'#'} };
         
-        // Eğer panelden 9 kutu hiç doldurulmadıysa, kırık durmasın diye 9 adet şablon otomatik üretilir
         const default9Blogs = [];
         for(let i=1; i<=9; i++) {
             default9Blogs.push({
@@ -61,8 +56,8 @@
         }
 
         const active9Blogs = (settings.blogs9 && settings.blogs9.length === 9) ? settings.blogs9 : default9Blogs;
-        
         const grid = document.getElementById('blog-9-grid');
+        
         active9Blogs.forEach(blog => {
             grid.innerHTML += `
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition flex flex-col h-full">
@@ -73,7 +68,7 @@
                             <h3 class="font-extrabold text-lg text-gray-900 mb-2 line-clamp-2">${blog.title}</h3>
                             <p class="text-gray-600 text-xs leading-relaxed line-clamp-4 mb-4">${blog.summary}</p>
                         </div>
-                        <a href="blog-detay.html?boxId=${blog.id}" class="text-xs font-bold text-primary inline-flex items-center gap-1 hover:underline">
+                        <a href="blog-detay.html?boxId=${blog.id}" class="text-xs font-bold text-sky-600 inline-flex items-center gap-1 hover:underline">
                             Yazının Tamamını Oku &rarr;
                         </a>
                     </div>
@@ -81,14 +76,11 @@
             `;
         });
 
-        // Üst Sosyal Medya
-        if(settings.socials) {
-            document.getElementById('header-socials').innerHTML = `
-                <a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500"><i class="fa-brands fa-instagram"></i></a>
-                <a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500"><i class="fa-brands fa-youtube"></i></a>
-                <a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500"><i class="fa-brands fa-tiktok"></i></a>
-            `;
-        }
+        document.getElementById('header-socials').innerHTML = `
+            <a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500 mx-1"><i class="fa-brands fa-instagram"></i></a>
+            <a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500 mx-1"><i class="fa-brands fa-youtube"></i></a>
+            <a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500 mx-1"><i class="fa-brands fa-tiktok"></i></a>
+        `;
     </script>
 </body>
 </html>

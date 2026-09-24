@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İletişim & Servis Çağır - Fiber Tesisat</title>
-    <script src="https://jsdelivr.net"></script>
+    <script src="https://tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root { --primary-color: #0284c7; --font-family: 'sans-serif'; }
-        body { font-family: var(--font-family); }
-        .bg-primary { background-color: var(--primary-color); }
-        .text-primary { color: var(--primary-color); }
+        .site-logo { height: 56px !important; width: auto !important; object-fit: contain !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
 
+    <!-- Üst Menü -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <a href="index.html" class="text-2xl font-black text-primary tracking-tight">FIBER TESİSAT</a>
-            <div class="flex space-x-6 font-semibold text-sm">
-                <a href="index.html" class="text-gray-600 hover:text-primary transition">Ana Sayfa</a>
-                <a href="hakkimizda.html" class="text-gray-600 hover:text-primary transition">Hakkımızda</a>
-                <a href="blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                <a href="iletisim.html" class="text-primary border-b-2 border-primary pb-1">İletişim</a>
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
+            <a href="index.html" class="block hover:opacity-90 transition">
+                <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo">
+            </a>
+            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-gray-600 hover:text-sky-600 transition">Hakkımızda</a>
+                <a href="blog.html" class="text-gray-600 hover:text-sky-600 transition">Blog</a>
+                <a href="iletisim.html" class="text-sky-600 border-b-2 border-sky-600 pb-1">İletişim</a>
             </div>
             <div class="flex gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
     <!-- Üst Alan: İstanbul Bölge Vurgusu Tasarımı -->
-    <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 text-center px-4 border-b-4 border-primary">
+    <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 text-center px-4 border-b-4 border-sky-600">
         <div class="max-w-4xl mx-auto space-y-4">
-            <div class="w-16 h-16 bg-primary/20 text-primary text-3xl flex items-center justify-center rounded-full mx-auto mb-2 animate-bounce">
+            <div class="w-16 h-16 bg-sky-600/20 text-sky-500 text-3xl flex items-center justify-center rounded-full mx-auto mb-2 animate-bounce">
                 <i class="fa-solid fa-map-location-dot"></i>
             </div>
             <h1 class="text-3xl md:text-4xl font-black tracking-tight">İstanbul'un Tüm Bölgelerine 7/24 Kesintisiz Hizmet!</h1>
@@ -41,24 +41,23 @@
         </div>
     </div>
 
-    <!-- Sol ve Sağ İçerik Alanı -->
+    <!-- İletişim Form ve Bilgiler -->
     <main class="max-w-7xl mx-auto px-4 py-16 w-full flex-grow grid grid-cols-1 lg:grid-cols-3 gap-12">
         
-        <!-- Sol Taraf: Telefon ve Hazır Mesajlı WhatsApp Şablonu -->
+        <!-- Sol Bölüm -->
         <div class="space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
                 <h3 class="font-black text-lg text-gray-900">Doğrudan İletişim Hatları</h3>
-                <div class="w-12 h-1 bg-primary rounded"></div>
+                <div class="w-12 h-1 bg-sky-600 rounded"></div>
                 
-                <a href="tel:+905551234567" class="block bg-gray-50 border border-gray-100 p-4 rounded-xl hover:bg-gray-100 transition flex items-center gap-4 group">
+                <a href="tel:+905312316902" class="block bg-gray-50 border border-gray-100 p-4 rounded-xl hover:bg-gray-100 transition flex items-center gap-4 group">
                     <div class="p-3 bg-cyan-100 text-cyan-600 rounded-lg text-lg group-hover:scale-110 transition"><i class="fa-solid fa-headset animate-pulse"></i></div>
                     <div>
                         <p class="text-xs font-bold text-gray-400 uppercase">Müşteri Destek / Tıkla Ara</p>
-                        <p class="text-gray-900 font-extrabold text-base md:text-lg">+90 (555) 123 45 67</p>
+                        <p class="text-gray-900 font-extrabold text-base md:text-lg">+90 (531) 231 69 02</p>
                     </div>
                 </a>
 
-                <!-- WhatsApp Şablon Butonu -->
                 <a href="https://wa.mestanbul'dan%20yazıyorum." target="_blank" class="block bg-emerald-50 border border-emerald-100 p-4 rounded-xl hover:bg-emerald-100 transition flex items-center gap-4 group">
                     <div class="p-3 bg-emerald-500 text-white rounded-lg text-lg group-hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></div>
                     <div>
@@ -69,7 +68,7 @@
             </div>
         </div>
 
-        <!-- Sağ Taraf: İstanbul İlçeli Detaylı Hızlı Talep Formu -->
+        <!-- Hızlı Talep Formu -->
         <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 lg:col-span-2">
             <h3 class="text-2xl font-black text-gray-900 mb-2">Hızlı Talep Oluşturma Formu</h3>
             <p class="text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">Bilgilerinizi bırakın, uzman ekibimiz 15 dakikada sizi arasın.</p>
@@ -78,18 +77,18 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Adınız Soyadınız</label>
-                        <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition text-sm font-medium">
+                        <input type="text" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Telefon Numaranız</label>
-                        <input type="tel" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition text-sm font-medium">
+                        <input type="tel" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Bulunduğunuz İlçe (İstanbul)</label>
-                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition text-sm font-medium bg-white">
+                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium bg-white">
                             <option value="">İlçe Seçiniz</option>
                             <option value="avrupa">Bağcılar (Merkez)</option>
                             <option value="avrupa">Esenyurt</option>
@@ -102,7 +101,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">İstenen Hizmet / Arıza Türü</label>
-                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition text-sm font-medium bg-white">
+                        <select required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium bg-white">
                             <option value="su-kacagi">Su Kaçağı Tespiti</option>
                             <option value="gider-yikama">Pis Su Gider Yıkama</option>
                             <option value="tikaniklik">Tıkanıklık Açma</option>
@@ -114,10 +113,10 @@
 
                 <div>
                     <label class="block text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Adresiniz veya Kısa Arıza Açıklaması</label>
-                    <textarea rows="4" required placeholder="Sorunu kısaca tarif edebilir veya adresinizi yazabilirsiniz..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-primary transition text-sm font-medium resize-none"></textarea>
+                    <textarea rows="4" required placeholder="Sorunu kısaca tarif edebilir..." class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-sky-500 transition text-sm font-medium resize-none"></textarea>
                 </div>
 
-                <button type="submit" class="bg-primary hover:opacity-90 text-white font-black px-8 py-3.5 rounded-lg transition shadow-md w-full sm:w-auto cursor-pointer uppercase tracking-wider text-xs">
+                <button type="submit" class="bg-sky-600 hover:bg-sky-700 text-white font-black px-8 py-3.5 rounded-lg transition shadow-md w-full sm:w-auto cursor-pointer uppercase tracking-wider text-xs border-none">
                     Arıza Kaydı Gönder
                 </button>
             </form>
@@ -129,13 +128,11 @@
     </footer>
 
     <script>
-        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { primaryColor: '#0284c7', fontFamily: 'sans-serif', socials:{instagram:'#', youtube:'#', tiktok:'#'} };
-        document.documentElement.style.setProperty('--primary-color', settings.primaryColor);
-        document.documentElement.style.setProperty('--font-family', settings.fontFamily);
+        const settings = JSON.parse(localStorage.getItem('fiberTesisatSettings')) || { socials:{instagram:'#', youtube:'#', tiktok:'#'} };
         document.getElementById('header-socials').innerHTML = `
-            <a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500"><i class="fa-brands fa-instagram"></i></a>
-            <a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500"><i class="fa-brands fa-youtube"></i></a>
-            <a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="${settings.socials.instagram}" target="_blank" class="hover:text-pink-500 transition text-gray-500 mx-1"><i class="fa-brands fa-instagram"></i></a>
+            <a href="${settings.socials.youtube}" target="_blank" class="hover:text-red-600 transition text-gray-500 mx-1"><i class="fa-brands fa-youtube"></i></a>
+            <a href="${settings.socials.tiktok}" target="_blank" class="hover:text-black transition text-gray-500 mx-1"><i class="fa-brands fa-tiktok"></i></a>
         `;
     </script>
 </body>
