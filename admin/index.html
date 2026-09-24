@@ -1,138 +1,107 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tüm Detayları Yönetim Masası | Fiber Tesisat</title>
-  <style>
-    body { font-family: sans-serif; background: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
-    .giris-kutusu, .yonetim-masasi { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; max-width: 500px; width: 100%; }
-    .yonetim-masasi { display: none; text-align: left; max-width: 800px; }
-    h2 { color: #0f172a; margin-bottom: 20px; font-size: 24px; text-align: center; border-bottom: 3px solid #14b8a6; padding-bottom: 10px; }
-    h3 { font-size: 15px; color: #1e3a8a; margin: 25px 0 10px 0; border-left: 4px solid #14b8a6; padding-left: 8px; text-transform: uppercase; font-weight: bold; }
-    input, textarea, select { width: 100%; padding: 11px; margin-bottom: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
-    label { font-weight: bold; color: #475569; display: block; margin-bottom: 4px; font-size: 12px; }
-    button { width: 100%; background: #14b8a6; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
-    .grup-izgara { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelişmiş Yönetim Paneli - Fiber Tesisat</title>
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-<body>
+<body class="bg-slate-100 text-gray-800 font-sans min-h-screen flex flex-col">
 
-  <!-- ŞİFRE GİRİŞ KUTUSU (BURASI EKSİKTİ, TAMAMLANDI) -->
-  <div class="giris-kutusu" id="giris-alani">
-    <h2>Fiber Tesisat <br><span style="color:#14b8a6; font-size:16px;">Yönetim Masası</span></h2>
-    <input type="password" id="sifre-alani" placeholder="Yönetici Şifrenizi Girin" style="text-align:center;">
-    <button onclick="panelGirisKontrol()">Sisteme Giriş Yap 🚀</button>
-  </div>
-
-  <!-- ULTRA GELİŞMİŞ PANEL FORMU -->
-  <div class="yonetim-masasi" id="panel-alani">
-    <h2>🛠️ Fiber Tesisat ULTRA İnce Ayrıntı Yönetim Paneli</h2>
-    
-    <h3>🎨 1. İNCE RENK, FONT VE LOGO YAZI AYARLARI</h3>
-    <div class="grup-izgara">
-      <div><label>Yazı ve Başlık Rengi (Lacivert vb.)</label><input type="color" id="p-renk" value="#1e3a8a"></div>
-      <div>
-        <label>Sitenin Genel Yazı Tipi (Font Style)</label>
-        <select id="p-font">
-          <option value="system-ui">Modern İnce (System)</option>
-          <option value="Georgia">Kurumsal Kalın (Georgia)</option>
-          <option value="Arial">Düz Kurumsal (Arial)</option>
-        </select>
-      </div>
-    </div>
-    <div class="grup-izgara">
-      <div><label>7/24 Ana İletişim Hattı</label><input type="text" id="p-tel" value="0531 231 69 02"></div>
-      <div><label>WhatsApp Link Numarası</label><input type="text" id="p-wp" value="905312316902"></div>
+    <!-- Şifre Giriş Ekranı (Şifre: Fenerbahçe2140) -->
+    <div id="login-barrier" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-gray-100">
+            <div class="w-16 h-16 bg-sky-100 text-sky-600 text-3xl flex items-center justify-center rounded-full mx-auto mb-4"><i class="fa-solid fa-user-shield"></i></div>
+            <h2 class="text-xl font-black text-slate-800 mb-1">Yönetici Girişi</h2>
+            <p class="text-xs text-gray-400 mb-6 uppercase tracking-wider font-semibold">Fiber Tesisat Kumanda Merkezi</p>
+            <form onsubmit="checkAdminPassword(event)">
+                <input type="password" id="input-pass" placeholder="Şifrenizi Girin" required class="w-full px-4 py-3 border rounded-xl text-sm mb-4 focus:outline-sky-500 font-bold text-center tracking-widest">
+                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-bold py-3 rounded-xl text-sm transition cursor-pointer shadow-md">Sistemi Aç</button>
+            </form>
+        </div>
     </div>
 
-    <h3>📱 2. SOSYAL MEDYA LİNKLERİ (TIKTOK/IG/YT)</h3>
-    <div class="grup-izgara">
-      <div><label>TikTok Linki</label><input type="text" id="p-link-tt" value="https://tiktok.com"></div>
-      <div><label>Instagram Profil Linki</label><input type="text" id="p-link-ig" value="https://instagram.com"></div>
-    </div>
-    <label>YouTube Kanal Linki</label><input type="text" id="p-link-yt" value="https://youtube.com">
+    <!-- Panel Ana İçeriği -->
+    <div id="admin-panel-content" class="hidden flex flex-col min-h-screen">
+        <header class="bg-slate-900 text-white p-4 shadow-md flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-lg font-black flex items-center gap-2 text-sky-400 uppercase tracking-wide"><i class="fa-solid fa-sliders"></i> İnce Ayrıntı İçerik Yönetimi</h1>
+            <div class="flex items-center gap-4 w-full sm:w-auto justify-end">
+                <a href="../index.html" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-lg border border-slate-700 transition">Ana Sayfayı Gör</a>
+                <button onclick="window.location.reload()" class="text-xs bg-red-700 hover:bg-red-600 px-4 py-2.5 rounded-lg transition font-bold cursor-pointer">Çıkış Yap</button>
+            </div>
+        </header>
 
-    <h3>📸 3. DÖNEN SLAYT ALANI (5 ADET FOTOĞRAF LİNKİ)</h3>
-    <label>Slayt Başlığı</label><input type="text" id="p-baslik" value="Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti">
-    <label>Slogan Banner Metni</label><input type="text" id="p-slogan" value="DOĞRU SEÇİM, HIZLI ÇÖZÜM">
-    <label>Açıklama Alt Paragrafı</label><textarea id="p-metin" rows="2">Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.</textarea>
-    <div class="grup-izgara">
-      <div><label>1. Slayt Resim Linki</label><input type="text" id="p-sl1" value="https://unsplash.com"></div>
-      <div><label>2. Slayt Resim Linki</label><input type="text" id="p-sl2" value="https://unsplash.com"></div>
-    </div>
-    <div class="grup-izgara">
-      <div><label>3. Slayt Resim Linki</label><input type="text" id="p-sl3" value="https://unsplash.com"></div>
-      <div><label>4. Slayt Resim Linki</label><input type="text" id="p-sl4" value="https://unsplash.com"></div>
-    </div>
-    <label>5. Slayt Resim Linki</label><input type="text" id="p-sl5" value="https://unsplash.com">
+        <main class="max-w-5xl mx-auto px-4 py-8 w-full flex-grow space-y-8 pb-24">
+            <form onsubmit="saveAllSettings(event)" class="space-y-8">
+                
+                <!-- Şifre Değiştirme -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h2 class="text-base font-black border-b pb-3 mb-4 text-slate-700 uppercase"><i class="fa-solid fa-lock-open text-yellow-500 mr-1"></i> Giriş Şifresi Güncelleme</h2>
+                    <div class="max-w-xs"><label class="block text-xs font-bold text-gray-500 mb-1">Panel Giriş Şifresi</label><input type="text" id="panel-password" class="w-full border p-2.5 rounded-lg text-sm font-bold focus:outline-sky-500"></div>
+                </div>
 
-    <h3>🛠️ 4. 5 ADET HİZMET KARTININ TÜM AYARLARI</h3>
-    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
-      <label><b>1. Kart (Su Kaçağı):</b> Başlık, Detay ve Resim</label>
-      <input type="text" id="hz-b-1" value="Su Kaçağı Tespiti">
-      <input type="text" id="hz-d-1" value="Akustik dinleme ve termal kameralar ile kırmadan noktasal kaçak tespiti yapıyoruz.">
-      <input type="text" id="hz-img-1" value="https://unsplash.com">
-    </div>
-    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
-      <label><b>2. Kart (Tıkanıklık):</b> Başlık, Detay ve Resim</label>
-      <input type="text" id="hz-b-2" value="Tıkanıklık Açma">
-      <input type="text" id="hz-d-2" value="Robot makinelerimiz yardımıyla pimaş, mutfak ve tuvalet tıkanıklıklarını zarar vermeden açıyoruz.">
-      <input type="text" id="hz-img-2" value="https://unsplash.com">
-    </div>
-    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
-      <label><b>3. Kart (Petek):</b> Başlık, Detay ve Resim</label>
-      <input type="text" id="hz-b-3" value="Petek Temizliği">
-      <input type="text" id="hz-d-3" value="Özel teknolojik cihazlar yardımıyla peteklerinizi temizleyerek ısınma performansını artırıyoruz.">
-      <input type="text" id="hz-img-3" value="https://unsplash.com">
-    </div>
-    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
-      <label><b>4. Kart (Tamirat):</b> Başlık, Detay ve Resim</label>
-      <input type="text" id="hz-b-4" value="Garantili Tamirat">
-      <input type="text" id="hz-d-4" value="Arızalı bölgelerin onarım ve tesisat yenileme işlemlerini garantili olarak tamamlıyoruz.">
-      <input type="text" id="hz-img-4" value="https://unsplash.com">
-    </div>
-    <div style="background:#f8fafc; padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
-      <label><b>5. Kart (Pis Su Gider Yıkama):</b> Başlık, Detay ve Resim</label>
-      <input type="text" id="hz-b-5" value="Pis Su Gider Yıkama">
-      <input type="text" id="hz-d-5" value="Basınçlı özel makinelerimiz ve yıkama jetlerimizle pimaş giderlerinizi tertemiz yıkıyoruz.">
-      <input type="text" id="hz-img-5" value="https://unsplash.com">
-    </div>
+                <!-- Genel Ayarlar (Renk, Font, İletişim, Sayaçlar) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-palette text-sky-500 mr-1"></i> Genel Tema ve Metin Ayarları</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Tema Rengi</label><input type="color" id="primaryColor" class="w-full h-11 border rounded-lg cursor-pointer"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Yazı Tipi Ailesi</label><select id="fontFamily" class="w-full border p-3 rounded-lg bg-white text-sm focus:outline-sky-500"><option value="sans-serif">Sans-Serif (Modern)</option><option value="serif">Serif (Klasik)</option><option value="monospace">Monospace (Yazılımsal)</option></select></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 1 Değer (Örn: 15+ Yıl)</label><input type="text" id="stat-1-val" class="w-full border p-2.5 rounded-lg text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 1 Etiket (Örn: Sektörel Tecrübe)</label><input type="text" id="stat-1-lbl" class="w-full border p-2.5 rounded-lg text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 2 Değer (Örn: 5.000+)</label><input type="text" id="stat-2-val" class="w-full border p-2.5 rounded-lg text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">İstatistik 2 Etiket (Örn: Mutlu Müşteri)</label><input type="text" id="stat-2-lbl" class="w-full border p-2.5 rounded-lg text-sm"></div>
+                    </div>
+                </div>
 
-    <h3>📺 5. 4 ADET YOUTUBE VİDEO YERLEŞTİRME LİNKLERİ</h3>
-    <div class="grup-izgara">
-      <div><label>YouTube Video 1 Linki</label><input type="text" id="p-yt1" value="https://youtube.com"></div>
-      <div><label>YouTube Video 2 Linki</label><input type="text" id="p-yt2" value="https://youtube.com"></div>
-    </div>
-    <div class="grup-izgara">
-      <div><label>YouTube Video 3 Linki</label><input type="text" id="p-yt3" value="https://youtube.com"></div>
-      <div><label>YouTube Video 4 Linki</label><input type="text" id="p-yt4" value="https://youtube.com"></div>
-    </div>
+                <!-- Slayt Metinleri ve 5 Adet Görsel Linki -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-images text-sky-500 mr-1"></i> Slayt Üstü Metinler ve 5 Görsel Alanı</h2>
+                    <div class="space-y-3">
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Büyük Slayt Başlığı</label><input type="text" id="slide-title" class="w-full border p-2.5 rounded-lg text-sm font-semibold"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Slayt Spot Alt Başlık</label><input type="text" id="slide-subtitle" class="w-full border p-2.5 rounded-lg text-sm font-semibold text-cyan-600"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Slayt Açıklama Metni</label><textarea id="slide-desc" rows="2" class="w-full border p-2.5 rounded-lg text-sm resize-none"></textarea></div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-3 pt-3" id="slide-links-zone"></div>
+                </div>
 
-    <h3>📝 6. HAKKIMIZDA & ADRES BİLGİLERİ</h3>
-    <label>Hakkımızda Başlığı</label><input type="text" id="p-hak-baslik" value="Yenilikçi Teknoloji ile Profesyonel Tesisat">
-    <label>Hakkımızda Uzun Tanıtım Yazısı</label><textarea id="p-hak-metin" rows="3">Fiber Tesisat, İstanbul'da geleneksel tesisat yöntemlerinin yetersiz kaldığı noktalarda teknoloji odaklı çözümler sunmak amacıyla kuruldu. Akustik dinleme cihazı, kamera and termal görüntüleme cihazlarını kullanarak gizli su kaçaklarını duvar ve zemine zarar vermeden tespit etme konusunda uzmanlaştık. Avrupa ve Anadolu Yakası'nda yüzlerce ev ve işyerine hizmet verdik. Her müşterimizde tahribatı minimize ederek, hızlı ve kalıcı çözümler üレッtik. Teknolojiye yaptığımız yatırım, bizi sektörde farklı kılan en önemli unsurdur.</textarea>
-    <label>Açık Ofis Adresiniz</label><input type="text" id="p-adres" value="Çınar Mahallesi 820. Sk. No:44/B Bağcılar / İstanbul">
-    <div class="grup-izgara">
-      <div><label>Tecrübe Kutusu (Örn: 15+ Yıl)</label><input type="text" id="p-k1" value="15+ Yıl"></div>
-      <div><label>Müşteri Kutusu (Örn: 5.000+)</label><input type="text" id="p-k2" value="5.000+"></div>
-    </div>
+                <!-- Hakkımızda Sayfası Metin Detayları -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-address-card text-sky-500 mr-1"></i> Hakkımızda Sayfası Makalesi</h2>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Hakkımızda Başlığı</label><input type="text" id="about-title" class="w-full border p-2.5 rounded-lg text-sm font-bold"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Uzun Kurumsal Tanıtım Metni (Makaleniz)</label><textarea id="about-text" rows="5" class="w-full border p-2.5 rounded-lg text-sm text-justify leading-relaxed"></textarea></div>
+                </div>
 
-    <button onclick="ayarlariCanliyaAl()">Sitedeki Tüm İnce Ayrıntıları Canlıya Al 🚀</button>
-  </div>
+                <!-- 5 Hizmet Kartı Alanı -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-cubes text-sky-500 mr-1"></i> Ana Sayfedaki Hizmet Kartları (5 Adet)</h2>
+                    <div class="space-y-4" id="services-zone"></div>
+                </div>
 
-  <script>
-    function panelGirisKontrol() {
-      var girilenSifre = document.getElementById('sifre-alani').value;
-      // Mevcut şifreniz "Fenerbahçe2140" olarak ayarlanmıştır. Tırnak içini dilediğiniz gibi değiştirebilirsiniz.
-      if(girilenSifre === "fiber44") {
-        alert("Giriş Başarılı! Yönetim Dünyasına Hoş Geldiniz.");
-        document.getElementById('giris-alani').style.display = 'none';
-        document.getElementById('panel-alani').style.display = 'block';
-      } else { 
-        alert("Hatalı Şifre! Giriş Engellendi."); 
-      }
-    }
+                <!-- 4 Adet YouTube Video Embed Linki -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-brands fa-youtube text-red-600 mr-1"></i> YouTube Video Linkleri (4 Adet Embed)</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="videos-zone"></div>
+                </div>
 
-    function ayarlariCanliyaAl() {
-      localStorage.setItem('site_tel', document.getElementById('p-tel').value);
+                <!-- Sosyal Medya İkon Linkleri -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
+                    <h2 class="text-base font-black border-b pb-3 text-slate-700 uppercase"><i class="fa-solid fa-hashtag text-sky-500 mr-1"></i> Sosyal Medya Bağlantıları (Header & Footer)</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-bold text-pink-600 mb-1">Instagram Linki</label><input type="url" id="social-instagram" class="w-full border p-2 rounded text-sm"></div>
+                        <div><label class="block text-xs font-bold text-red-600 mb-1">YouTube Linki</label><input type="url" id="social-youtube" class="w-full border p-2 rounded text-sm"></div>
+                        <div><label class="block text-xs font-bold text-slate-900 mb-1">TikTok Linki</label><input type="url" id="social-tiktok" class="w-full border p-2 rounded text-sm"></div>
+                    </div>
+                </div>
+
+                <!-- KAYDETME BUTONU -->
+                <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-xl border-t flex justify-end max-w-none z-40">
+                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-12 py-3.5 rounded-xl shadow-md transition text-base cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk mr-2"></i> Tüm Ayarları Sisteme İşle ve Kaydet
+                    </button>
+                </div>
+            </form>
+
+            <!-- BLOG SAYFASINDAKİ 9 ADET HAZIR KUTU İÇİN ÖZEL DÜZENLEME ALANI -->
