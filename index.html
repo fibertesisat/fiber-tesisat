@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiber Tesisat - Profesyonel Tesisat Çözümleri</title>
-    <!-- CSS ile Kırılmaz Logo ve Sabit Kurallar -->
     <style>
         :root { --primary-color: #0284c7; --font-family: sans-serif; }
-        body { font-family: var(--font-family); margin: 0; padding: 0; }
-        .bg-primary { background-color: var(--primary-color) !important; }
-        .text-primary { color: var(--primary-color) !important; }
-        .border-primary { border-color: var(--primary-color) !important; }
+        body { font-family: var(--font-family); margin: 0; padding: 0; background-color: #f8fafc; color: #1e293b; }
         .slider-img { display: none; }
         .slider-img.active { display: block; }
-        /* Logonun dev gibi büyümesini engelleyen hayati CSS kuralı */
         .site-logo {
             height: 56px !important;
             max-height: 56px !important;
@@ -21,33 +16,37 @@
             object-fit: contain !important;
             display: block;
         }
+        nav { background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
     </style>
-    <script src="https://jsdelivr.net"></script>
+    <script src="https://tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#0284c7' } } } }
+    </script>
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen">
 
     <!-- Üst Menü (Header) -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <nav class="sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white">
             <a href="index.html" class="block hover:opacity-90 transition">
                 <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo">
             </a>
             <div class="flex flex-wrap justify-center space-x-4 md:space-x-6 font-semibold text-sm md:text-base">
-                <a href="index.html" class="text-primary border-b-2 border-primary pb-1">Ana Sayfa</a>
-                <a href="hakkimizda.html" class="text-gray-600 hover:text-primary transition">Hakkımızda</a>
-                <a href="blog.html" class="text-gray-600 hover:text-primary transition">Blog</a>
-                <a href="iletisim.html" class="text-gray-600 hover:text-primary transition">İletişim</a>
+                <a href="index.html" class="text-sky-600 border-b-2 text-sky-600 pb-1">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-gray-600 hover:text-sky-600 transition">Hakkımızda</a>
+                <a href="blog.html" class="text-gray-600 hover:text-sky-600 transition">Blog</a>
+                <a href="iletisim.html" class="text-gray-600 hover:text-sky-600 transition">İletişim</a>
             </div>
             <div class="flex items-center gap-4 text-xl" id="header-socials"></div>
         </div>
     </nav>
 
-    <!-- 1. BLOK: Gelişmiş Slider Alanı -->
+    <!-- Slayt Alanı -->
     <div class="relative h-[500px] md:h-[600px] w-full bg-slate-900 overflow-hidden shadow-inner">
-        <div id="slider-container" class="w-full h-full"></div>
+        <div id="slider-container" class="w-full h-full absolute inset-0 z-0"></div>
         
-        <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-center px-4 z-10">
+        <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-center px-4 z-10">
             <div class="max-w-3xl text-white space-y-4 md:space-y-6">
                 <h1 id="static-slide-title" class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight drop-shadow-md">
                     Cihazlar ile Kırmadan Dökmeden Su Kaçağı Tespiti
@@ -59,7 +58,8 @@
                     Son teknoloji kameralı ve akustik dinleme cihazlarımızla evinizdeki tesisat sorunlarını noktasal olarak tespit ediyor, garantili tamir ediyoruz.
                 </p>
                 <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="tel:+905551234567" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold px-8 py-3.5 rounded-lg shadow-lg hover:scale-105 transition duration-200 w-full sm:w-auto text-sm md:text-base text-center">
+                    <!-- Sizin Güncel Telefon Numaranız Entegre Edildi -->
+                    <a href="tel:+905312316902" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold px-8 py-3.5 rounded-lg shadow-lg hover:scale-105 transition duration-200 w-full sm:w-auto text-sm md:text-base text-center">
                         <i class="fa-solid fa-phone mr-2 animate-pulse"></i> 7/24 Servis Ara
                     </a>
                     <a href="https://wa.me." target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-8 py-3.5 rounded-lg shadow-lg hover:scale-105 transition duration-200 w-full sm:w-auto text-sm md:text-base text-center">
@@ -69,28 +69,28 @@
             </div>
         </div>
 
-        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/70 text-white p-3 rounded-full transition z-20 cursor-pointer hidden md:block">
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/70 text-white p-3 rounded-full transition z-20 cursor-pointer hidden md:block border-none">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
-        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/70 text-white p-3 rounded-full transition z-20 cursor-pointer hidden md:block">
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/70 text-white p-3 rounded-full transition z-20 cursor-pointer hidden md:block border-none">
             <i class="fa-solid fa-chevron-right"></i>
         </button>
     </div>
 
-    <!-- 2. BLOK: Güven ve İstatistik Alanı -->
-    <section class="max-w-7xl mx-auto px-4 py-16 w-full">
+    <!-- İstatistik Alanı -->
+    <section class="max-w-7xl mx-auto px-4 py-16 w-full z-10">
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12">
             <div class="lg:w-7/12 space-y-4">
                 <h2 id="about-block-title" class="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Yenilikçi Teknoloji ile Profesyonel Tesisat</h2>
-                <div class="w-20 h-1 bg-primary rounded"></div>
+                <div class="w-20 h-1 bg-sky-600 rounded"></div>
                 <p id="about-block-text" class="text-gray-600 text-sm md:text-base leading-relaxed text-justify whitespace-pre-line"></p>
             </div>
             <div class="lg:w-5/12 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center group hover:shadow-md transition">
-                    <span id="stat-1-val" class="text-4xl font-black text-primary mb-1">15+ Yıl</span>
+                <div class="bg-gradient-to-br from-slate-50 to-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center group hover:shadow-md transition">
+                    <span id="stat-1-val" class="text-4xl font-black text-sky-600 mb-1">15+ Yıl</span>
                     <span id="stat-1-lbl" class="text-xs font-bold text-gray-500 uppercase tracking-wide">Sektörel Tecrübe</span>
                 </div>
-                <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center group hover:shadow-md transition">
+                <div class="bg-gradient-to-br from-slate-50 to-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center group hover:shadow-md transition">
                     <span id="stat-2-val" class="text-4xl font-black text-emerald-600 mb-1">5.000+</span>
                     <span id="stat-2-lbl" class="text-xs font-bold text-gray-500 uppercase tracking-wide">Mutlu Müşteri</span>
                 </div>
@@ -98,37 +98,37 @@
         </div>
     </section>
 
-    <!-- 3. BLOK: Profesyonel Hizmet Alanlarımız -->
+    <!-- Hizmet Alanları -->
     <section class="bg-white py-16 border-t border-b border-gray-100 w-full">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-3xl font-black text-center text-gray-900 tracking-tight mb-2">Profesyonel Hizmet Alanlarımız</h2>
-            <div class="w-24 h-1 bg-primary mx-auto mb-12 rounded"></div>
+            <div class="w-24 h-1 bg-sky-600 mx-auto mb-12 rounded"></div>
             <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"></div>
         </div>
     </section>
 
-    <!-- 4. BLOK: YouTube Video Alanı -->
+    <!-- Videolar -->
     <section class="max-w-7xl mx-auto px-4 py-16 w-full">
         <h2 class="text-3xl font-black text-center text-gray-900 tracking-tight mb-2">Uygulama Videolarımız</h2>
-        <div class="w-24 h-1 bg-primary mx-auto mb-12 rounded"></div>
+        <div class="w-24 h-1 bg-sky-600 mx-auto mb-12 rounded"></div>
         <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-8"></div>
     </section>
 
     <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
         <div class="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
-            <button onclick="closeVideoModal()" class="absolute -top-12 right-0 text-white text-3xl font-bold hover:text-gray-300 cursor-pointer">&times; Kapat</button>
+            <button onclick="closeVideoModal()" class="absolute -top-12 right-0 text-white text-3xl font-bold hover:text-gray-300 cursor-pointer border-none bg-transparent">&times; Kapat</button>
             <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- 5. BLOK: Kurumsal Footer -->
-    <footer class="bg-slate-950 text-gray-300 mt-auto pt-16 pb-8 border-t-4 border-primary">
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-gray-300 mt-auto pt-16 pb-8 border-t-4 border-sky-600">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div class="space-y-4">
                 <img src="images/logo.png" alt="Fiber Tesisat Logo" class="site-logo bg-white p-1 rounded">
                 <p class="text-sm text-gray-400 leading-relaxed text-justify">
-                    İstanbul genelinde modern teknoloji odaklı cihazlarla kırmadan, dökmeden su kaçağı tespiti, tıkanıklık açma ve pis su gider yıkama işlemlerinde 7/24 kesin çözümler üerez.
+                    İstanbul genelinde modern teknoloji odaklı cihazlarla kırmadan, dökmeden su kaçağı tespiti, tıkanıklık açma og pis su gider yıkama işlemlerinde 7/24 kesin çözümler üretiyoruz.
                 </p>
                 <div class="flex gap-4 text-xl pt-2" id="footer-socials"></div>
             </div>
@@ -139,9 +139,10 @@
             <div class="space-y-4">
                 <h3 class="text-white font-bold text-lg">İletişim Bilgileri</h3>
                 <div class="space-y-3 text-sm text-gray-400">
-                    <p class="flex items-start gap-3"><i class="fa-solid fa-phone text-primary mt-1"></i> <span><strong>7/24 Acil Servis:</strong><br>+90 (555) 123 45 67</span></p>
-                    <p class="flex items-start gap-3"><i class="fa-solid fa-envelope text-primary mt-1"></i> <span>info@fibertesisat.com</span></p>
-                    <p class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-primary mt-1"></i> <span><strong>Hizmet Bölgesi:</strong><br>Avrupa ve Anadolu Yakası / Tüm İstanbul</span></p>
+                    <p class="flex items-start gap-3"><i class="fa-solid fa-phone text-sky-500 mt-1"></i> <span><strong>7/24 Acil Servis:</strong><br>+90 (531) 231 69 02</span></p>
+                    <p class="flex items-start gap-3"><i class="fa-solid fa-envelope text-sky-500 mt-1"></i> <span>info@fibertesisat.com</span></p>
+                    <p class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-sky-500 mt-1"></i> <span><strong>Hizmet Bölgesi:</strong><br>Avrupa ve Anadolu Yakası / Tüm İstanbul</span></p>
                 </div>
             </div>
         </div>
+        <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-gray-800 text-center text-xs text-gray-500 flex flex-col sm:flex-row justify-between gap-4">
